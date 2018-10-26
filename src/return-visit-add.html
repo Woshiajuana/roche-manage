@@ -27,14 +27,12 @@
             <img src="assets/img/logo.png" alt="">
         </a>
     </div>
-    <div class="am-icon-list tpl-header-nav-hover-ico am-fl am-margin-right">
-
-    </div>
-
-    <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
-
+    <div class="am-icon-list tpl-header-nav-hover-ico am-fl am-margin-right"></div>
+    <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}">
+        <span class="am-sr-only">导航切换</span>
+        <span class="am-icon-bars"></span>
+    </button>
     <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
-
         <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list tpl-header-list">
             <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
                 <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">
@@ -81,6 +79,7 @@
                             <span class="tpl-dropdown-content-font"> 为了能最准确的传达所描述的问题， 建议你在反馈时附上演示，方便我们理解。 </span>
                         </a>
                     </li>
+
                 </ul>
             </li>
             <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
@@ -152,137 +151,79 @@
 <div class="tpl-page-container tpl-page-header-fixed">
     <div class="tpl-left-nav tpl-left-nav-hover">
         <div class="tpl-left-nav-title">
-            Amaze UI 列表
+            功能列表
         </div>
         <div class="tpl-left-nav-list">
             <ul class="tpl-left-nav-menu">
                 <li class="tpl-left-nav-item">
-                    <a href="index.html" class="nav-link">
+                    <a target="rightFrame" href="http://localhost:42150/home/index" class="nav-link active">
                         <i class="am-icon-home"></i>
                         <span>首页</span>
                     </a>
                 </li>
                 <li class="tpl-left-nav-item">
-                    <a href="chart.html" class="nav-link tpl-left-nav-link-list">
-                        <i class="am-icon-bar-chart"></i>
-                        <span>数据表</span>
-                        <i class="tpl-left-nav-content tpl-badge-danger">
-                            12
-                        </i>
-                    </a>
-                </li>
-
-                <li class="tpl-left-nav-item">
                     <a href="javascript:;" class="nav-link tpl-left-nav-link-list">
-                        <i class="am-icon-table"></i>
-                        <span>表格</span>
+                        <i class="am-icon-user"></i>
+                        <span>用户管理</span>
                         <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right"></i>
                     </a>
-                    <ul class="tpl-left-nav-sub-menu">
+                    <ul class="tpl-left-nav-sub-menu" style="display: block;">
+
                         <li>
-                            <a href="table-font-list.html">
+                            <a data-bind="menu" target="rightFrame" href="http://localhost:42150/user/home/UserList" class="">
                                 <i class="am-icon-angle-right"></i>
-                                <span>文字表格</span>
-                                <i class="am-icon-star tpl-left-nav-content-ico am-fr am-margin-right"></i>
+                                <span>VIP用户列表</span>
+                                <i class="tpl-left-nav-content-ico am-fr am-margin-right"></i>
                             </a>
-
-                            <a href="table-images-list.html">
+                        </li>
+                        <li>
+                            <a data-bind="menu" target="rightFrame" href="http://localhost:42150/user/home/FreeUserList">
                                 <i class="am-icon-angle-right"></i>
-                                <span>图片表格</span>
-                                <i class="tpl-left-nav-content tpl-badge-success">
-                                    18
-                                </i>
-
-                                <a href="form-news.html">
-                                    <i class="am-icon-angle-right"></i>
-                                    <span>消息列表</span>
-                                    <i class="tpl-left-nav-content tpl-badge-primary">
-                                        5
-                                    </i>
-
-
-                                    <a href="form-news-list.html">
-                                        <i class="am-icon-angle-right"></i>
-                                        <span>文字列表</span>
-
-                                    </a>
+                                <span>免费用户列表</span>
+                                <i class="tpl-left-nav-content-ico am-fr am-margin-right"></i>
+                            </a>
                         </li>
                     </ul>
                 </li>
-
                 <li class="tpl-left-nav-item">
-                    <!-- 打开状态 a 标签添加 active 即可   -->
-                    <a href="javascript:;" class="nav-link tpl-left-nav-link-list active">
-                        <i class="am-icon-wpforms"></i>
-                        <span>表单</span>
-                        <!-- 列表打开状态的i标签添加 tpl-left-nav-more-ico-rotate 图表即90°旋转  -->
-                        <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right tpl-left-nav-more-ico-rotate"></i>
+                    <a href="javascript:;" class="nav-link tpl-left-nav-link-list">
+                        <i class="am-icon-user"></i>
+                        <span>电话回访</span>
+                        <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right"></i>
                     </a>
-                    <!-- 打开状态 添加 display:block-->
                     <ul class="tpl-left-nav-sub-menu" style="display: block;">
                         <li>
-                            <!-- 打开状态 a 标签添加 active 即可   -->
-                            <a href="form-amazeui.html" class="active">
+                            <a data-bind="menu" target="rightFrame" href="http://localhost:42150/user/user/BespokeList" class="active">
                                 <i class="am-icon-angle-right"></i>
-                                <span>Amaze UI 表单</span>
-                                <i class="am-icon-star tpl-left-nav-content-ico am-fr am-margin-right"></i>
+                                <span>回访列表</span>
+                                <i class="tpl-left-nav-content-ico am-fr am-margin-right"></i>
                             </a>
-
-                            <a href="form-line.html">
+                        </li>
+                        <li>
+                            <a data-bind="menu" target="rightFrame" href="http://localhost:42150/user/user/FreeUserList">
                                 <i class="am-icon-angle-right"></i>
-                                <span>线条表单</span>
+                                <span>预约列表</span>
+                                <i class="tpl-left-nav-content-ico am-fr am-margin-right"></i>
                             </a>
                         </li>
                     </ul>
-                </li>
-
-                <li class="tpl-left-nav-item">
-                    <a href="login.html" class="nav-link tpl-left-nav-link-list">
-                        <i class="am-icon-key"></i>
-                        <span>登录</span>
-
-                    </a>
                 </li>
             </ul>
         </div>
     </div>
 
-
-
-
-
     <div class="tpl-content-wrapper">
-        <div class="tpl-content-page-title">
-            Amaze UI 表单
-        </div>
-        <ol class="am-breadcrumb">
-            <li><a href="#" class="am-icon-home">首页</a></li>
-            <li><a href="#">表单</a></li>
-            <li class="am-active">Amaze UI 表单</li>
-        </ol>
         <div class="tpl-portlet-components">
             <div class="portlet-title">
-                <div class="caption font-green bold">
-                    <span class="am-icon-code"></span> 表单
-                </div>
-                <div class="tpl-portlet-input tpl-fz-ml">
-                    <div class="portlet-input input-small input-inline">
-                        <div class="input-icon right">
-                            <i class="am-icon-search"></i>
-                            <input type="text" class="form-control form-control-solid" placeholder="搜索..."> </div>
-                    </div>
-                </div>
-
-
+                <ol class="am-breadcrumb">
+                    <li><a href="javascript:;" class="am-icon-wechat">用户管理</a></li>
+                    <li class="am-active">周报详情</li>
+                </ol>
             </div>
             <div class="tpl-block ">
-
                 <div class="am-g tpl-amazeui-form">
-
-
                     <div class="am-u-sm-12 am-u-md-9">
                         <form class="am-form am-form-horizontal">
-
                             <div class="am-form-group">
                                 <label for="user-phone" class="am-u-sm-3 am-form-label">注册手机号</label>
                                 <div class="am-u-sm-9">
@@ -296,14 +237,12 @@
                                     <input type="text" id="user-name" placeholder="姓名">
                                 </div>
                             </div>
-
                             <div class="am-form-group">
                                 <label for="user-intro" class="am-u-sm-3 am-form-label">回访记录</label>
                                 <div class="am-u-sm-9">
                                     <textarea class="" rows="5" id="user-intro" placeholder="输入回访记录"></textarea>
                                 </div>
                             </div>
-
                             <div class="am-form-group">
                                 <div class="am-u-sm-9 am-u-sm-push-3">
                                     <button type="button" class="am-btn am-btn-primary">提交</button>
@@ -313,20 +252,8 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
-
-
-
-
-
-
-
-
-
     </div>
-
 </div>
 
 
