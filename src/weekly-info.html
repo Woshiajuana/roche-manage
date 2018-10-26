@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>回访记录</title>
-    <meta name="description" content="回访记录">
+    <title>周报详情</title>
+    <meta name="description" content="周报详情">
     <meta name="keywords" content="index">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="renderer" content="webkit">
@@ -16,6 +16,11 @@
     <link rel="stylesheet" href="assets/css/amazeui.min.css" />
     <link rel="stylesheet" href="assets/css/admin.css">
     <link rel="stylesheet" href="assets/css/app.css">
+    <style>
+        .a-text-label { color: #999; font-size: 14px; text-align: right;}
+        .a-text-value { color: #666; font-size: 14px;}
+        .a-text-title { color: #666; font-size: 16px; text-align: right}
+    </style>
 </head>
 
 <body data-type="generalComponents">
@@ -206,6 +211,7 @@
     </div>
 
     <div class="tpl-content-wrapper">
+
         <div class="tpl-portlet-components">
             <div class="portlet-title">
                 <ol class="am-breadcrumb">
@@ -213,119 +219,108 @@
                     <li class="am-active">周报详情</li>
                 </ol>
             </div>
-            <div class="tpl-block">
-                <div class="am-g">
-                    <div class="am-form-group">
-                        <div class="am-input-group am-input-group-primary">
-                            <span class="am-input-group-label">
-                                <input type="text" id="txtStime" class="am-form-field" data-am-datepicker="{format: &#39;yyyy-mm-dd&#39;}">
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="am-g" style="margin-bottom: 10px;">
 
-                    <div class="am-u-sm-12 am-u-md-3">
-                        <div class="am-form-group">
-                            <select data-am-selected="{btnSize: 'sm'}">
-                                <option value="option1">注册时间</option>
-                                <option value="option2">注册1天用户</option>
-                                <option value="option3">注册8天用户</option>
-                                <option value="option3">注册15天用户</option>
-                                <option value="option3">注册22天用户</option>
-                                <option value="option3">注册30天用户</option>
-                            </select>
+            <div class="tpl-block ">
+                <div class="am-g tpl-amazeui-form">
+                    <div class="am-u-sm-12 am-u-md-12">
+                        <div class="am-u-sm-4"><p class="a-text-label">帐号</p></div>
+                        <div class="am-u-sm-8">
+                            <p class="a-text-value">帐号帐号</p>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-12 am-u-md-12">
+                        <div class="am-u-sm-4"><p class="a-text-label">本周总计测糖次数</p></div>
+                        <div class="am-u-sm-8">
+                            <p class="a-text-value">12</p>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-12 am-u-md-12">
+                        <div class="am-u-sm-4"><p class="a-text-label">正常次数</p></div>
+                        <div class="am-u-sm-8">
+                            <p class="a-text-value">12</p>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-12 am-u-md-12">
+                        <div class="am-u-sm-4"><p class="a-text-label">偏低次数</p></div>
+                        <div class="am-u-sm-8">
+                            <p class="a-text-value">12</p>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-12 am-u-md-12">
+                        <div class="am-u-sm-4"><p class="a-text-label">升高次数</p></div>
+                        <div class="am-u-sm-8">
+                            <p class="a-text-value">12</p>
                         </div>
                     </div>
 
-                    <div class="am-u-sm-12 am-u-md-3">
-                        <div class="am-form-group">
-                            <select data-am-selected="{btnSize: 'sm'}">
-                                <option value="option1">注册时间</option>
-                                <option value="option2">注册1天用户</option>
-                                <option value="option3">注册8天用户</option>
-                                <option value="option3">注册15天用户</option>
-                                <option value="option3">注册22天用户</option>
-                                <option value="option3">注册30天用户</option>
-                            </select>
+                    <div class="am-u-sm-12 am-u-md-12">
+                        <div class="am-u-sm-4"><p class="a-text-title">空腹或餐前血糖</p></div>
+                        <div class="am-u-sm-8"></div>
+                    </div>
+                    <div class="am-u-sm-12 am-u-md-12">
+                        <div class="am-u-sm-4"><p class="a-text-label">平均</p></div>
+                        <div class="am-u-sm-8">
+                            <p class="a-text-value">12</p>
                         </div>
                     </div>
-                    <!--<div class="am-u-sm-12 am-u-md-11">-->
-                        <!--<div class="am-btn-toolbar">-->
-                            <!--<div class="am-btn-group">-->
-                                <!--<button type="button" class="am-btn am-btn-default">7天不活跃用户</button>-->
-                                <!--<button type="button" class="am-btn am-btn-default">注册1天用户</button>-->
-                                <!--<button type="button" class="am-btn am-btn-default">注册8天用户</button>-->
-                                <!--<button type="button" class="am-btn am-btn-default">注册15天用户</button>-->
-                                <!--<button type="button" class="am-btn am-btn-default">注册22天用户</button>-->
-                                <!--<button type="button" class="am-btn am-btn-default">注册30天用户</button>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <div class="am-u-sm-12 am-u-md-2">
-                        <div class="am-btn-group">
-                            <button type="button" class="am-btn am-btn-default am-btn-success">导出</button>
+                    <div class="am-u-sm-12 am-u-md-12">
+                        <div class="am-u-sm-4"><p class="a-text-label">建议</p></div>
+                        <div class="am-u-sm-8">
+                            <p class="a-text-value">建议建议建议建议建议建议建议建议建议建议建议建议建议建议建议建议建议建议建议建议建议建议建议</p>
                         </div>
                     </div>
-                </div>
-                <div class="am-g">
-                    <div class="am-u-sm-12">
-                        <form class="am-form">
-                            <table class="am-table am-table-striped am-table-hover table-main">
-                                <thead>
-                                <tr>
-                                    <th class="table-check"><input type="checkbox" class="tpl-table-fz-check"></th>
-                                    <th class="table-type">姓名</th>
-                                    <th class="table-type">性别</th>
-                                    <th class="table-type">手机</th>
-                                    <th class="table-author am-hide-sm-only">用户请求时间</th>
-                                    <th class="table-type am-hide-sm-only">记录客服账号</th>
-                                    <th class="table-date am-hide-sm-only">预约时间</th>
-                                    <th class="table-type am-hide-sm-only">是否已回访</th>
-                                    <th class="table-type am-hide-sm-only">回访客服账号</th>
-                                    <th class="table-set">操作</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td><input type="checkbox"></td>
-                                    <td>1</td>
-                                    <td><a href="#">Business</a></td>
-                                    <td>default</td>
-                                    <td>default</td>
-                                    <td>default</td>
-                                    <td>default</td>
-                                    <td class="am-hide-sm-only">测试1号</td>
-                                    <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
-                                    <td>
-                                        <div class="am-btn-toolbar">
-                                            <div class="am-btn-group am-btn-group-xs">
-                                                <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 添加回访记录</button>
-                                                <button class="am-btn am-btn-default am-btn-xs am-hide-sm-only"><span class="am-icon-copy"></span> 查看个人信息</button>
-                                                <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <div class="am-cf">
-                                <div class="am-fr">
-                                    <ul class="am-pagination tpl-pagination">
-                                        <li class="am-disabled"><a href="#">«</a></li>
-                                        <li class="am-active"><a href="#">1</a></li>
-                                        <li><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">4</a></li>
-                                        <li><a href="#">5</a></li>
-                                        <li><a href="#">»</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <hr>
 
-                        </form>
+                    <div class="am-u-sm-12 am-u-md-12">
+                        <div class="am-u-sm-4"><p class="a-text-title">餐后血糖</p></div>
+                        <div class="am-u-sm-8"></div>
                     </div>
+                    <div class="am-u-sm-12 am-u-md-12">
+                        <div class="am-u-sm-4"><p class="a-text-label">平均</p></div>
+                        <div class="am-u-sm-8">
+                            <p class="a-text-value">12</p>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-12 am-u-md-12">
+                        <div class="am-u-sm-4"><p class="a-text-label">建议</p></div>
+                        <div class="am-u-sm-8">
+                            <p class="a-text-value">建议建议建议建议建议建议建议建议建议建议建议建议建议建议建议建议建议建议建议建议建议建议建议</p>
+                        </div>
+                    </div>
+
+                    <div class="am-u-sm-12 am-u-md-12">
+                        <div class="am-u-sm-4"><p class="a-text-title">低血糖</p></div>
+                        <div class="am-u-sm-8"></div>
+                    </div>
+                    <div class="am-u-sm-12 am-u-md-12">
+                        <div class="am-u-sm-4"><p class="a-text-label">平均</p></div>
+                        <div class="am-u-sm-8">
+                            <p class="a-text-value">12</p>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-12 am-u-md-12">
+                        <div class="am-u-sm-4"><p class="a-text-label">建议</p></div>
+                        <div class="am-u-sm-8">
+                            <p class="a-text-value">建议建议建议建议建议建议建议建议建议建议建议建议建议建议建议建议建议建议建议建议建议建议建议</p>
+                        </div>
+                    </div>
+
+                    <div class="am-u-sm-12 am-u-md-12">
+                        <div class="am-u-sm-4"><p class="a-text-title">血糖波动</p></div>
+                        <div class="am-u-sm-8"></div>
+                    </div>
+                    <div class="am-u-sm-12 am-u-md-12">
+                        <div class="am-u-sm-4"><p class="a-text-label">整体</p></div>
+                        <div class="am-u-sm-8">
+                            <p class="a-text-value">12</p>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-12 am-u-md-12">
+                        <div class="am-u-sm-4"><p class="a-text-label">建议</p></div>
+                        <div class="am-u-sm-8">
+                            <p class="a-text-value">建议建议建议建议建议建议建议建议建议建议建议建议建议建议建议建议建议建议建议建议建议建议建议</p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <div class="tpl-alert"></div>

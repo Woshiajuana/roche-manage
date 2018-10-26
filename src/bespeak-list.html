@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>回访记录</title>
-    <meta name="description" content="回访记录">
+    <title>预约记录</title>
+    <meta name="description" content="预约记录">
     <meta name="keywords" content="index">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="renderer" content="webkit">
@@ -15,6 +15,7 @@
     <meta name="apple-mobile-web-app-title" content="Amaze UI" />
     <link rel="stylesheet" href="assets/css/amazeui.min.css" />
     <link rel="stylesheet" href="assets/css/admin.css">
+    <link rel="stylesheet" href="assets/css/dialog.css">
     <link rel="stylesheet" href="assets/css/app.css">
 </head>
 
@@ -206,63 +207,29 @@
     </div>
 
     <div class="tpl-content-wrapper">
+
         <div class="tpl-portlet-components">
             <div class="portlet-title">
                 <ol class="am-breadcrumb">
                     <li><a href="javascript:;" class="am-icon-wechat">用户管理</a></li>
-                    <li class="am-active">周报详情</li>
+                    <li class="am-active">VIP用户列表</li>
                 </ol>
             </div>
+
             <div class="tpl-block">
-                <div class="am-g">
-                    <div class="am-form-group">
-                        <div class="am-input-group am-input-group-primary">
-                            <span class="am-input-group-label">
-                                <input type="text" id="txtStime" class="am-form-field" data-am-datepicker="{format: &#39;yyyy-mm-dd&#39;}">
-                            </span>
-                        </div>
-                    </div>
-                </div>
                 <div class="am-g" style="margin-bottom: 10px;">
-
-                    <div class="am-u-sm-12 am-u-md-3">
-                        <div class="am-form-group">
-                            <select data-am-selected="{btnSize: 'sm'}">
-                                <option value="option1">注册时间</option>
-                                <option value="option2">注册1天用户</option>
-                                <option value="option3">注册8天用户</option>
-                                <option value="option3">注册15天用户</option>
-                                <option value="option3">注册22天用户</option>
-                                <option value="option3">注册30天用户</option>
-                            </select>
+                    <div class="am-u-sm-12 am-u-md-6">
+                        <div class="am-btn-toolbar">
+                            <div class="am-btn-group">
+                                <button type="button" class="am-btn am-btn-default">7天不活跃</button>
+                                <button type="button" class="am-btn am-btn-default">7天不活跃</button>
+                                <button type="button" class="am-btn am-btn-default">7天不活跃</button>
+                                <button type="button" class="am-btn am-btn-default">7天不活跃</button>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="am-u-sm-12 am-u-md-3">
-                        <div class="am-form-group">
-                            <select data-am-selected="{btnSize: 'sm'}">
-                                <option value="option1">注册时间</option>
-                                <option value="option2">注册1天用户</option>
-                                <option value="option3">注册8天用户</option>
-                                <option value="option3">注册15天用户</option>
-                                <option value="option3">注册22天用户</option>
-                                <option value="option3">注册30天用户</option>
-                            </select>
-                        </div>
-                    </div>
-                    <!--<div class="am-u-sm-12 am-u-md-11">-->
-                        <!--<div class="am-btn-toolbar">-->
-                            <!--<div class="am-btn-group">-->
-                                <!--<button type="button" class="am-btn am-btn-default">7天不活跃用户</button>-->
-                                <!--<button type="button" class="am-btn am-btn-default">注册1天用户</button>-->
-                                <!--<button type="button" class="am-btn am-btn-default">注册8天用户</button>-->
-                                <!--<button type="button" class="am-btn am-btn-default">注册15天用户</button>-->
-                                <!--<button type="button" class="am-btn am-btn-default">注册22天用户</button>-->
-                                <!--<button type="button" class="am-btn am-btn-default">注册30天用户</button>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <div class="am-u-sm-12 am-u-md-2">
+                    <div class="am-u-sm-12 am-u-md-5"></div>
+                    <div class="am-u-sm-12 am-u-md-1">
                         <div class="am-btn-group">
                             <button type="button" class="am-btn am-btn-default am-btn-success">导出</button>
                         </div>
