@@ -1,0 +1,240 @@
+<template>
+  <div class="app-container">
+    <div class="filter-container">
+      <el-row>
+        <el-form ref="pageForm" :inline="true" :model="listQuery" class="demo-form-inline">
+          <el-col :span="6">
+            <el-form-item label="类型">
+              <el-select v-model="listQuery.GroupCode" class="filter-item" placeholder="请选择类型" style="width:100%;">
+                <el-option label="任务分类" value="5224d6ba56e246498b253ac670c6059b" />
+                <el-option label="人群标签" value="cc0d4a2bc44341158a41562f6b530690" />
+                <el-option label="任务名称" value="fe7f12ebb5874767a7c38ded116c6f3g" />
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="4">
+            <el-form-item>
+              <el-row :gutter="20">
+                <el-col :span="12">
+                  <el-button size="small" class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">搜索</el-button>
+                </el-col>
+                <el-col :span="12">
+                  <el-button size="small" class="filter-item" type="primary" icon="el-icon-refresh" @click="handleRefresh()">重置</el-button>
+                </el-col>
+              </el-row>
+            </el-form-item>
+          </el-col>
+        </el-form>
+      </el-row>
+    </div>
+    <div class="button-container">
+      <el-button class="filter-item" type="primary" icon="el-icon-edit" @click="handleCreate">
+        新增
+      </el-button>
+    </div>
+    <el-table
+      :key="tableKey"
+      v-loading="listLoading"
+      :data="list"
+      border
+      fit
+      highlight-current-row
+      style="width: 100%;"
+    >
+      <el-table-column label="序号" type="index" width="50" align="center" />
+      <el-table-column label="名称" align="center">
+        <template slot-scope="scope">
+          <span>{{ scope.row.Key }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="操作" align="center" width="130" class-name="small-padding fixed-width">
+        <template slot-scope="{row}">
+          <el-button type="primary" size="mini" @click="handleUpdate(row)">
+            编辑
+          </el-button>
+          <!-- <el-button v-if="row.status!='deleted'" size="mini" type="danger" @click="handleDelete(row)">
+            删除
+          </el-button> -->
+        </template>
+      </el-table-column>
+    </el-table>
+
+    <pagination v-show="total>0" :total="total" :page.sync="listQuery.Page_index" :limit.sync="listQuery.Page_size" @pagination="getList" />
+
+    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
+      <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="110px" style="width: 400px; margin-left:50px;">
+        <el-form-item label="名称" prop="Key">
+          <el-input v-model="temp.Key" placeholder="请输入名称" />
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">
+          取消
+        </el-button>
+        <el-button type="primary" @click="dialogStatus==='create'?createData():updateData()">
+          确定
+        </el-button>
+      </div>
+    </el-dialog>
+  </div>
+</template>
+
+<script>
+import { fetchData } from '@/api/user'
+// import { parseTime } from '@/utils'
+import Pagination from '@/components/Pagination' // secondary package based on el-pagination
+
+export default {
+  components: { Pagination },
+  data() {
+    return {
+      tableKey: 0,
+      list: null,
+      total: 0,
+      listLoading: true,
+      listQuery: {
+        // Stime: '',
+        // Etime: '',
+        GroupCode: '5224d6ba56e246498b253ac670c6059b',
+        Page_index: 1,
+        Page_size: 10
+      },
+      showReviewer: false,
+      temp: {
+        id: undefined,
+        Name: '',
+        Mobile: '',
+        WxNo: '',
+        Sex: '',
+        BuyUser: '',
+        BuyUserMobile: ''
+      },
+      dialogFormVisible: false,
+      dialogStatus: '',
+      textMap: {
+        update: '编辑',
+        create: '新增'
+      },
+      // dialogPvVisible: false,
+      pvData: [],
+      rules: {
+        Key: [
+          { required: true, message: '请输入名称', trigger: 'change' }
+        ],
+     
+      },
+      downloadLoading: false
+    }
+  },
+  created() {
+    this.getList()
+  },
+  methods: {
+    getList() { // 获取列表数据
+      this.listLoading = true
+      fetchData('/User/VipUser/GetKeyValueList', this.listQuery).then(response => {
+        if (response.Data) {
+          this.list = response.Data.Data
+          this.total = response.Data.Count
+        }
+        this.listLoading = false
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+    handleFilter() { // 搜索
+      this.listQuery.Page_index = 1
+      this.getList()
+    },
+    handleRefresh() { // 重置
+      this.listQuery.GroupCode = '5224d6ba56e246498b253ac670c6059b'
+      this.getList()
+    },
+    resetTemp() { // 新增重置数据
+      this.temp = {
+        Id: undefined,
+        Key: '',
+      }
+    },
+    handleCreate() { // 新增按钮
+      this.resetTemp()
+      this.dialogStatus = 'create'
+      this.dialogFormVisible = true
+      this.$nextTick(() => {
+        this.$refs['dataForm'].clearValidate()
+      })
+    },
+    createData() { // 弹出框 新增确定 提交
+      this.$refs['dataForm'].validate((valid) => {
+        if (valid) {
+          this.dataFun(this.temp)
+        }
+      })
+    },
+    handleUpdate(row) { // 编辑按钮
+      this.temp = Object.assign({}, row) // copy obj
+      this.dialogStatus = 'update'
+      this.dialogFormVisible = true
+      this.$nextTick(() => {
+        this.$refs['dataForm'].clearValidate()
+      })
+    },
+    updateData() { // 弹出框 编辑确定 提交
+      this.$refs['dataForm'].validate((valid) => {
+        if (valid) {
+          const tempData = Object.assign({}, this.temp)
+          console.log(this.temp)
+          var editData = {
+            Id: this.temp.Id,
+            Key: this.temp.Key
+          }
+          this.dataFun(editData)
+        }
+      })
+    },
+    dataFun(data) {
+      data.Group = this.listQuery.GroupCode;
+      fetchData('/User/VipUser/SetKeyValue', data).then((response) => {
+        this.$message({
+          message: this.textMap[this.dialogStatus] + response.Message,
+          type: response.Status == 0 ? 'success' : 'error',
+          duration: 2000
+        })
+        if (response.Status == 0) {
+          this.dialogFormVisible = false
+          this.getList()
+        }
+      }).catch((error) => {
+        console.log(error)
+      })
+    },
+    handleDelete(row) { // 删除
+      this.$confirm('确定删除?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => { // 确定
+
+        fetchData('/xxxxx', { Data: row.Id }).then((response) => {
+          if (response.Status == 0) {
+            const index = this.list.indexOf(row)
+            this.list.splice(index, 1)
+          }
+          this.$message({
+            message: '删除'+response.Message,
+            type: response.Status == 0 ? 'success' : 'error',
+            duration: 2000
+          })
+        }).catch((error) => {
+          console.log(error)
+        })
+      }).catch(() => { // 取消
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        })
+      })
+    }
+  }
+}
+</script>
