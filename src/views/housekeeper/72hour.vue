@@ -121,10 +121,10 @@
                         <!-- 查看详情 -->
                         用户详情
                     </el-button>
-<!--                    <el-button size="mini" type="primary" @click="viewReports(row)">-->
-<!--                        &lt;!&ndash; 查看详情 &ndash;&gt;-->
-<!--                        收集完成-->
-<!--                    </el-button>-->
+                    <el-button size="mini" type="primary" @click="handleCollectConfirm(row)">
+                        <!-- 查看详情 -->
+                        收集完成
+                    </el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -220,6 +220,33 @@
             this.getList()
         },
         methods: {
+            handleCollectConfirm (item) {
+                let { UserId, PlanId } = item;
+                console.log('item', item)
+                this.$confirm('确定收集完成?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => { // 确定
+                    fetchData('/User/VipUser/SetSendPlan', {
+                        IsQEHourOver: true,
+                        UserId: UserId,
+                        Id: PlanId,
+                    }).then((response) => {
+                        this.$message({
+                            message: '操作'+response.Message,
+                            type: response.Status == 0 ? 'success' : 'error',
+                            duration: 2000
+                        });
+                        if (response.Status == 0) {
+                            this.getList()
+                        }
+                    }).catch((error) => {
+
+                    })
+                }).catch(() => { // 取消
+                });
+            },
             getList() { // 获取列表数据
                 this.listLoading = true
                 fetchData('/User/VipUser/GetTrainPlanList', this.listQuery).then(response => {
