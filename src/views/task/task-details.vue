@@ -238,7 +238,7 @@
                             <pagination v-show="total>0" :total="total" :page.sync="listQuery.Page_index" :limit.sync="listQuery.Page_size" @pagination="getList" />
 
                         </el-tab-pane>
-                        <el-tab-pane label="任务报告" name="second">
+                        <el-tab-pane label="任务报告" name="second" v-if="!$route.query.isFirst">
                             <report-form v-if="tabsIndex == 1" ref="report" title="本周" tab_type="0" :temp="week_queryData" />
                         </el-tab-pane>
                         <el-tab-pane label="控糖方案" name="third">

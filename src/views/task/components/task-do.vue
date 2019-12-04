@@ -43,7 +43,7 @@
         </el-row>
         <div style="padding:10px 0;">
             <el-button type="primary" :loading="listLoading" @click="isTaskPreviewDialog = true">任务预览</el-button>
-            <el-button v-if="!rowData.IsSendReport" type="primary" @click="sendOutFun">发布报告</el-button>
+            <el-button v-if="!rowData.IsSendReport && !$route.query.isFirst" type="primary" @click="sendOutFun">发布报告</el-button>
             <el-button @click="prevPage">返回</el-button>
         </div>
 

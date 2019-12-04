@@ -217,7 +217,10 @@ export default {
     beginTask(row) { // 开始任务跳转
       this.$router.push({
         path: '/task-details',
-        query: row
+        query: {
+            ...row,
+            isFirst: true,
+        }
       })
     },
     isNoAnswer(row){  // 拒绝接听
