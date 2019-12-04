@@ -45,6 +45,11 @@
                         <el-input v-model="ruleForm.BuyUserRelation" type="text" placeholder="请输入购买人与使用者关系" :disabled="isView" />
                     </el-form-item>
                 </el-col>
+                <el-col :xs="24" :md="12" :lg="8" :xl="6">
+                    <el-form-item label="备注：" prop="ArchiveRemark">
+                        <el-input v-model="ruleForm.ArchiveRemark" type="text" placeholder="请输入备注" :disabled="isView" />
+                    </el-form-item>
+                </el-col>
                 <el-col :span="24"><p>用户基础信息</p></el-col>
                 <el-col :xs="24" :md="12" :lg="8" :xl="6">
                     <el-form-item label="性别：" prop="Sex">

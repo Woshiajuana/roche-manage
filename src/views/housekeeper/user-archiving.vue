@@ -44,6 +44,11 @@
                         <el-input v-model="ruleForm.BuyUserRelation" type="text" placeholder="请输入购买人与使用者关系" :readonly="isView" />
                     </el-form-item>
                 </el-col>
+                <el-col :xs="24" :md="12" :lg="8" :xl="6">
+                    <el-form-item label="备注：" prop="ArchiveRemark">
+                        <el-input v-model="ruleForm.ArchiveRemark" type="text" placeholder="请输入备注" :readonly="isView" />
+                    </el-form-item>
+                </el-col>
                 <el-col :span="24"><p>用户基础信息</p></el-col>
 
                 <el-col :xs="24" :md="12" :lg="8" :xl="6">
@@ -240,6 +245,7 @@
                     Complications: [],
 
                     BuyUserRelation: '', // 20191130 新增购买关系
+                    ArchiveRemark: '', // 20191130 新增购买关系
                 },
                 timesArr:[
                     'D2',
@@ -342,6 +348,7 @@
 
 
                 this.ruleForm.BuyUserRelation = rowData.BuyUserRelation || '';
+                this.ruleForm.ArchiveRemark = rowData.ArchiveRemark || '';
 
                 this.PlanImgUrl = rowData.PlanImgUrl;
                 this.ruleForm.Sex = rowData.Sex?rowData.Sex.toString():'';
@@ -396,6 +403,7 @@
                             InsulinMethod: this.ruleForm.InsulinMethod,
                             TreatmentPlan: this.ruleForm.TreatmentPlan,
                             BuyUserRelation: this.ruleForm.BuyUserRelation,
+                            ArchiveRemark: this.ruleForm.ArchiveRemark,
                             Complications: JSON.stringify(this.ruleForm.Complications)
                         }
                         console.log(submitData)
