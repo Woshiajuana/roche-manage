@@ -3,50 +3,45 @@
         <el-row :gutter="20">
             <el-form ref="ruleForm" :model="ruleForm" :rules="rules" label-width="120px" class="demo-ruleForm">
                 <el-col :span="24"><p>用户联系方式</p></el-col>
-                <!-- <el-col :xs="12" :sm="8" :md="8" :lg="4"><div class="show-info">姓名：<span class="span-info">{{ ruleForm.Name }}</span></div></el-col>
-                <el-col :xs="12" :sm="8" :md="8" :lg="6"><div class="show-info">电话：<span class="span-info">{{ ruleForm.Mobile }}</span></div></el-col>
-                <el-col :xs="12" :sm="8" :md="8" :lg="4"><div class="show-info">微信：<span class="span-info">{{ ruleForm.WxNo }}</span></div></el-col>
-                <el-col :xs="12" :sm="8" :md="8" :lg="4"><div class="show-info">购买人姓名：<span class="span-info">{{ ruleForm.BuyUser }}</span></div></el-col>
-                <el-col :xs="12" :sm="8" :md="8" :lg="6"><div class="show-info">购买人电话：<span class="span-info">{{ ruleForm.BuyUserMobile }}</span></div></el-col> -->
                 <el-col :xs="24" :md="12" :lg="8" :xl="6">
                     <el-form-item label="使用者姓名：" prop="Name">
-                        <el-input v-model="ruleForm.Name " type="text" placeholder="请输入使用者姓名" :readonly="isView" />
+                        <el-input v-model="ruleForm.Name " type="text" placeholder="请输入使用者姓名" :disabled="isView" />
                     </el-form-item>
                 </el-col>
                 <!-- <el-col :xs="24" :md="12" :lg="8" :xl="6"><div class="show-info">使用者电话：<span class="span-info">{{ ruleForm.Mobile }}</span></div></el-col> -->
                 <el-col :xs="24" :md="12" :lg="8" :xl="6">
                     <el-form-item label="使用者电话：" prop="Mobile">
-                        <el-input v-model="ruleForm.Mobile " type="text" placeholder="请输入使用者电话" :readonly="true" />
+                        <el-input v-model="ruleForm.Mobile " type="text" placeholder="请输入使用者电话" :disabled="true" />
                     </el-form-item>
                 </el-col>
                 <el-col :xs="24" :md="12" :lg="8" :xl="6">
                     <el-form-item label="使用者微信：" prop="WxNo">
-                        <el-input v-model="ruleForm.WxNo " type="text" placeholder="请输入使用者微信" :readonly="isView" />
+                        <el-input v-model="ruleForm.WxNo " type="text" placeholder="请输入使用者微信" :disabled="isView" />
                     </el-form-item>
                 </el-col>
                 <el-col :xs="24" :md="12" :lg="8" :xl="6">
                     <el-form-item label="购买人姓名：" prop="BuyUser">
-                        <el-input v-model="ruleForm.BuyUser " type="text" placeholder="请输入购买人姓名" :readonly="isView" />
+                        <el-input v-model="ruleForm.BuyUser " type="text" placeholder="请输入购买人姓名" :disabled="isView" />
                     </el-form-item>
                 </el-col>
                 <el-col :xs="24" :md="12" :lg="8" :xl="6">
                     <el-form-item label="购买人电话：" prop="BuyUserMobile">
-                        <el-input v-model="ruleForm.BuyUserMobile " type="text" placeholder="请输入购买人电话" :readonly="isView" />
+                        <el-input v-model="ruleForm.BuyUserMobile " type="text" placeholder="请输入购买人电话" :disabled="isView" />
                     </el-form-item>
                 </el-col>
                 <el-col :xs="24" :md="12" :lg="8" :xl="6">
                     <el-form-item label="购买人微信：" prop="BuyWxNo">
-                        <el-input v-model="ruleForm.BuyWxNo" type="text" placeholder="请输入购买人微信" :readonly="isView" />
+                        <el-input v-model="ruleForm.BuyWxNo" type="text" placeholder="请输入购买人微信" :disabled="isView" />
                     </el-form-item>
                 </el-col>
                 <el-col :xs="24" :md="12" :lg="8" :xl="6">
                     <el-form-item label="购买者关系：" prop="BuyUserRelation">
-                        <el-input v-model="ruleForm.BuyUserRelation" type="text" placeholder="请输入购买人与使用者关系" :readonly="isView" />
+                        <el-input v-model="ruleForm.BuyUserRelation" type="text" placeholder="请输入购买人与使用者关系" :disabled="isView" />
                     </el-form-item>
                 </el-col>
                 <el-col :xs="24" :md="12" :lg="8" :xl="6">
                     <el-form-item label="备注：" prop="ArchiveRemark">
-                        <el-input v-model="ruleForm.ArchiveRemark" type="text" placeholder="请输入备注" :readonly="isView" />
+                        <el-input v-model="ruleForm.ArchiveRemark" type="text" placeholder="请输入备注" :disabled="isView" />
                     </el-form-item>
                 </el-col>
                 <el-col :span="24"><p>用户基础信息</p></el-col>
@@ -61,32 +56,32 @@
                 </el-col>
                 <el-col :xs="24" :md="12" :lg="8" :xl="6">
                     <el-form-item label="身高（厘米）：" prop="Height">
-                        <el-input v-model="ruleForm.Height " type="number" placeholder="请输入身高" :readonly="isView" />
+                        <el-input v-model="ruleForm.Height " type="number" placeholder="请输入身高" :disabled="isView" />
                     </el-form-item>
                 </el-col>
                 <el-col :xs="24" :md="12" :lg="8" :xl="6">
                     <el-form-item type="number" label="体重（公斤）：" prop="Weight">
-                        <el-input v-model="ruleForm.Weight" placeholder="请输入体重" :readonly="isView" />
+                        <el-input v-model="ruleForm.Weight" placeholder="请输入体重" :disabled="isView" />
                     </el-form-item>
                 </el-col>
                 <el-col :xs="24" :md="12" :lg="8" :xl="6">
                     <el-form-item label="出生日期：" prop="Brithday">
-                        <el-date-picker v-model="ruleForm.Brithday"   type="date" value-format=" yyyy-MM-dd" placeholder="请选择出生日期" style="width:100%;" :readonly="isView" />
+                        <el-date-picker v-model="ruleForm.Brithday"   type="date" value-format=" yyyy-MM-dd" placeholder="请选择出生日期" style="width:100%;" :disabled="isView" />
                     </el-form-item>
                 </el-col>
                 <el-col :xs="24" :md="12" :lg="8" :xl="6">
                     <el-form-item label="糖化血红蛋白：">
-                        <el-input v-model="ruleForm.RedProtein" placeholder="请输入糖化血红蛋白" :readonly="isView" />
+                        <el-input v-model="ruleForm.RedProtein" placeholder="请输入糖化血红蛋白" :disabled="isView" />
                     </el-form-item>
                 </el-col>
                 <el-col :xs="24" :md="12" :lg="8" :xl="6">
                     <el-form-item label="测试时间：">
-                        <el-date-picker v-model="ruleForm.LastTestRedProtein" type="date" value-format=" yyyy-MM-dd" placeholder="请选择测试时间" style="width:100%;" :readonly="isView" />
+                        <el-date-picker v-model="ruleForm.LastTestRedProtein" type="date" value-format=" yyyy-MM-dd" placeholder="请选择测试时间" style="width:100%;" :disabled="isView" />
                     </el-form-item>
                 </el-col>
                 <el-col :xs="24" :md="12" :lg="8" :xl="6">
                     <el-form-item label="核销码："  >
-                        <el-input v-model="ruleForm.Code" placeholder="请输入核销码" :readonly="isView" />
+                        <el-input v-model="ruleForm.Code" placeholder="请输入核销码" :disabled="isView" />
                     </el-form-item>
                 </el-col>
                 <el-col :span="24"><p> 用户疾病信息</p></el-col>
@@ -99,7 +94,7 @@
                 </el-col>
                 <el-col :xs="24" :md="12" :lg="8" :xl="6">
                     <el-form-item label="确诊时间：" prop="DiagnosisTime">
-                        <el-date-picker v-model="ruleForm.DiagnosisTime" type="date" value-format="yyyy-MM-dd" placeholder="请选择时间" style="width:100%;" :readonly="isView" />
+                        <el-date-picker v-model="ruleForm.DiagnosisTime" type="date" value-format="yyyy-MM-dd" placeholder="请选择时间" style="width:100%;" :disabled="isView" />
                     </el-form-item>
                 </el-col>
                 <el-col :xs="24" :md="12" :lg="24" :xl="24" />
@@ -131,11 +126,7 @@
                 </el-col>
                 <el-col :xs="24" :sm="24">
                     <el-form-item>
-                        <template v-if="!isView">
-                            <el-button type="primary" @click="submitForm('ruleForm')">保存</el-button>
-                            <el-button type="primary" @click="createPlan">生成排期</el-button>
-                            <el-button @click="resetForm('ruleForm')">重置</el-button>
-                        </template>
+                        <el-button type="primary" @click="createPlan">生成排期</el-button>
                         <el-button @click="prevPage">返回</el-button>
                     </el-form-item>
                 </el-col>
@@ -334,7 +325,7 @@
         methods: {
             init() {
                 const rowData = this.$route.query;
-                this.UserId = rowData.UserId;
+                this.UserId = rowData.Id;
                 console.log(rowData)
                 if (rowData.isView) { // 是否是查看
                     this.isView = true;

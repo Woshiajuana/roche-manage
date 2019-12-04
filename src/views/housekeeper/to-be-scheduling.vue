@@ -110,7 +110,7 @@
             放弃服务
           </el-button>
           <el-button type="primary" size="mini" @click="setUserInfo(row)">
-            {{row.IsArchives?'修改档案':'新建档案'}}
+            生成排期
           </el-button>
 
         </template>
@@ -201,8 +201,11 @@ export default {
     },
      setUserInfo(row){ // 建立档案跳转
         this.$router.push({
-            path: '/user-archiving',
-            query: row
+            path: '/user-scheduling',
+            query: {
+                ...row,
+                isView: true,
+            }
         })
     },
     isNoAnswer(row){  // 拒绝接听
