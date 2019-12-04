@@ -112,7 +112,7 @@
           <el-button type="primary" size="mini" @click="setUserInfo(row)">
             {{row.IsArchives?'修改档案':'新建档案'}}
           </el-button>
-          
+
         </template>
       </el-table-column>
     </el-table>
@@ -157,7 +157,7 @@ export default {
         Mobile:'',
         Page_index: 1,
         Page_size: 10,
-        Scene:6 //管家待首访任务
+        Scene: 12 //管家待排期用户任务
       },
       dialogFormVisible: false,
       temp:{
@@ -169,7 +169,7 @@ export default {
           { required: true, message: '请输入备注', trigger: 'change' }
         ]
        }
-      
+
     }
   },
   created() {
@@ -248,7 +248,7 @@ export default {
           this.$message({
             type: 'info',
             message: '已取消放弃服务'
-          });          
+          });
         });
     },
     handleDelete(row) { // 删除
@@ -263,7 +263,7 @@ export default {
             const index = this.list.indexOf(row)
             this.list.splice(index, 1)
           }).catch(() => {
-              
+
           })
     }
   }

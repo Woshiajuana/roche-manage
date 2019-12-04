@@ -320,6 +320,13 @@ export const asyncRoutes = [
         hidden: true,
         meta: { title: 'VIP用户建档', roles: ['housekeeper'] }
       },
+        {
+            path: '/user-scheduling',
+            component: () => import('@/views/housekeeper/user-scheduling'),
+            name: 'user-scheduling',
+            hidden: true,
+            meta: { title: 'VIP用户排期', roles: ['housekeeper'] }
+        },
       {
         path: '/bloodSugarInfo',
         component: () => import('@/views/housekeeper/bloodSugarInfo'),
