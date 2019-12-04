@@ -133,86 +133,15 @@
                     <el-form-item>
                         <template v-if="!isView">
                             <el-button type="primary" @click="submitForm('ruleForm')">保存</el-button>
-                            <el-button type="primary" @click="createPlan">生成排期</el-button>
+<!--                            <el-button type="primary" @click="createPlan">生成排期</el-button>-->
                             <el-button @click="resetForm('ruleForm')">重置</el-button>
                         </template>
                         <el-button @click="prevPage">返回</el-button>
                     </el-form-item>
                 </el-col>
-                <el-col :span="24">
-                    <p>
-                        控糖训练排期
-                        <el-button class="filter-item" type="plain" icon="el-icon-download">
-                            <a :href="PlanImgUrl" download="下载" target="_blank">下载</a>
-                        </el-button>
-                    </p>
-                </el-col>
+
             </el-form>
-            <el-col :span="24">
-                <el-table
-                    :key="tableKey"
-                    v-loading="listLoading"
-                    :data="list"
-                    border
-                    fit
-                    highlight-current-row
-                    style="width: 100%;"
-                >
-                    <el-table-column label="序号" type="index" width="50" align="center" />
-                    <el-table-column label="排期日期" align="center">
-                        <template slot-scope="scope">
-                            <el-date-picker v-model="scope.row.PlanTimeStr" type="date" value-format="yyyy-MM-dd" placeholder="请选择日期" style="width:100%;" :readonly="isView" />
-                        </template>
-                    </el-table-column>
-                    <el-table-column label="排期时间" align="center">
-                        <template slot-scope="scope">
-                            <el-select v-model="scope.row.Hour" class="filter-item" placeholder="请选择时间" style="width:100%;" :disabled="isView">
-                                <el-option v-for="item in hourArr" :key="item" :label="item" :value="item" />
-                            </el-select>
-                        </template>
-                    </el-table-column>
 
-                    <el-table-column label="备注" align="center">
-                        <template slot-scope="scope">
-                            <el-input v-model="scope.row.TaskRemarkCreate" class="filter-item" placeholder="请输入备注" style="width:100%;" :disabled="isView"></el-input>
-                        </template>
-                    </el-table-column>
-                    <!-- <el-table-column label="任务名称" align="center">
-                      <template slot-scope="scope">
-                        <el-select v-model="scope.row.Name" class="filter-item" placeholder="请选择任务名称" style="width:100%;" :disabled="isView">
-                          <el-option v-for="item in taskNameArr" :key="item.Id" :label="item.Key" :value="item.Key" />
-                        </el-select>
-                      </template>
-                    </el-table-column>  -->
-
-                    <!-- <el-table-column label="辅导次数" type="index" min-width="90" align="center" />
-                    <el-table-column label="辅导时间" align="center">
-                      <template slot-scope="scope">
-                        <span>{{timesArr[scope.row.Sort-1]}}</span>
-                      </template>
-                    </el-table-column> -->
-                    <el-table-column label="任务名称" align="center">
-                        <template slot-scope="scope">
-                            <span>{{nameArr[scope.row.Sort-1]}}</span>
-                        </template>
-                    </el-table-column>
-
-
-                    <!-- <el-table-column label="体重（kg）" align="center">
-                            <template slot-scope="scope">
-                                <el-input type="number" v-model="scope.row.Weight" placeholder="请输入体重" :readonly="isView" onKeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))"></el-input>
-                            </template>
-                          </el-table-column> -->
-                    <el-table-column label="操作" align="center" width="230" class-name="small-padding fixed-width">
-                        <template slot-scope="scope">
-                            <el-button type="primary" size="mini" :disabled="isView" @click="planTimeSave(scope.row,scope.$index)">
-                                保存
-                            </el-button>
-                        </template>
-                    </el-table-column>
-                </el-table>
-
-            </el-col>
 
         </el-row>
     </div>
