@@ -212,13 +212,13 @@ export const asyncRoutes = [
         path: '/vip-not-active',
         component: () => import('@/views/vip/vip-not-active'),
         name: 'vip-not-active',
-        meta: { title: '未激活VIP用户', roles: ['housekeeper'] }
+        meta: { title: '未核销VIP用户', roles: ['housekeeper'] }
       },
       {
         path: '/vip-activated',
         component: () => import('@/views/vip/vip-activated'),
         name: 'vip-activated',
-        meta: { title: '已激活VIP用户', roles: ['housekeeper'] }
+        meta: { title: '已核销VIP用户', roles: ['housekeeper'] }
       },
       {
         path: '/vip-abandoned',
@@ -258,6 +258,12 @@ export const asyncRoutes = [
         name: 'to-be-contacted',
         meta: { title: 'VIP用户待首访', roles: ['housekeeper'] }
       },
+        {
+            path: '/to-be-scheduling',
+            component: () => import('@/views/housekeeper/to-be-scheduling'),
+            name: 'to-be-scheduling',
+            meta: { title: 'VIP用户待排期', roles: ['housekeeper'] }
+        },
       {
         path: '/errUser',
         component: () => import('@/views/housekeeper/errUser'),
@@ -306,7 +312,7 @@ export const asyncRoutes = [
       //   name: 'report-list',
       //   meta: { title: 'VIP报告列表', roles: ['housekeeper'] }
       // },
-      
+
       {
         path: '/user-archiving',
         component: () => import('@/views/housekeeper/user-archiving'),
