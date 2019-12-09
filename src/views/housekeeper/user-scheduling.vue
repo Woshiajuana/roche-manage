@@ -152,12 +152,12 @@
                     <el-table-column label="序号" type="index" width="50" align="center" />
                     <el-table-column label="排期日期" align="center">
                         <template slot-scope="scope">
-                            <el-date-picker v-model="scope.row.PlanTimeStr" type="date" value-format="yyyy-MM-dd" placeholder="请选择日期" style="width:100%;" :readonly="isView" />
+                            <el-date-picker v-model="scope.row.PlanTimeStr" type="date" value-format="yyyy-MM-dd" placeholder="请选择日期" style="width:100%;"/>
                         </template>
                     </el-table-column>
                     <el-table-column label="排期时间" align="center">
                         <template slot-scope="scope">
-                            <el-select v-model="scope.row.Hour" class="filter-item" placeholder="请选择时间" style="width:100%;" :disabled="isView">
+                            <el-select v-model="scope.row.Hour" class="filter-item" placeholder="请选择时间" style="width:100%;">
                                 <el-option v-for="item in hourArr" :key="item" :label="item" :value="item" />
                             </el-select>
                         </template>
@@ -165,7 +165,7 @@
 
                     <el-table-column label="备注" align="center">
                         <template slot-scope="scope">
-                            <el-input v-model="scope.row.TaskRemarkCreate" class="filter-item" placeholder="请输入备注" style="width:100%;" :disabled="isView"></el-input>
+                            <el-input v-model="scope.row.TaskRemarkCreate" class="filter-item" placeholder="请输入备注" style="width:100%;"></el-input>
                         </template>
                     </el-table-column>
                     <!-- <el-table-column label="任务名称" align="center">
@@ -196,7 +196,7 @@
                           </el-table-column> -->
                     <el-table-column label="操作" align="center" width="230" class-name="small-padding fixed-width">
                         <template slot-scope="scope">
-                            <el-button type="primary" size="mini" :disabled="isView" @click="planTimeSave(scope.row,scope.$index)">
+                            <el-button type="primary" size="mini" @click="planTimeSave(scope.row,scope.$index)">
                                 保存
                             </el-button>
                         </template>
