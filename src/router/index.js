@@ -232,6 +232,13 @@ export const asyncRoutes = [
         name: 'vip-finished',
         meta: { title: '已完成VIP用户', roles: ['housekeeper'] }
       },
+        {
+            path: '/vip-user-archiving',
+            component: () => import('@/views/vip/user-archiving'),
+            name: 'vip-user-archiving',
+            hidden: true,
+            meta: { title: 'VIP用户建档', roles: ['housekeeper'] }
+        },
     ]
   },
   {
@@ -320,6 +327,7 @@ export const asyncRoutes = [
         hidden: true,
         meta: { title: 'VIP用户建档', roles: ['housekeeper'] }
       },
+
         {
             path: '/user-scheduling',
             component: () => import('@/views/housekeeper/user-scheduling'),

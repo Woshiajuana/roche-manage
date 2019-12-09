@@ -274,7 +274,7 @@ export default {
     },
      setUserInfo(row){ // 建立档案跳转
         this.$router.push({
-            path: '/user-archiving',
+            path: '/vip-user-archiving',
             query: row
         })
     },
