@@ -242,7 +242,7 @@
                             <report-form v-if="tabsIndex == 1" ref="report" title="本周" tab_type="0" :temp="week_queryData" />
                         </el-tab-pane>
                         <el-tab-pane label="控糖方案" name="third">
-                            <iframe width="100%" height="500px" :src="'https://jkys-wechat.91jkys.com/user/third/login?pin=' + $route.query.UserId +'&accessId=roche&page=HEALTH_MANAGE'" frameborder="0" />
+                            <iframe width="100%" height="500px" :src="'https://api.91jkys.com/medical/user/partner-user/report?pId=' + $route.query.UserId +'&aId=roche'" frameborder="0" />
                         </el-tab-pane>
                     </el-tabs>
                 </template>
