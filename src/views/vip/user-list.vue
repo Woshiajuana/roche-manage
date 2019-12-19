@@ -303,7 +303,7 @@ export default {
       });
     },
     viewReports(row){ // 查看详情
-     row.isView = true;
+     // row.isView = true;
       //  this.$router.push({
       //       path: '/user-archiving',
       //       query: row
