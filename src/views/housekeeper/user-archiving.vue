@@ -293,7 +293,7 @@
                 this.ruleForm.Weight = rowData.Weight;
                 this.ruleForm.Brithday = rowData.BrithdayStr;
                 this.ruleForm.RedProtein = rowData.RedProtein;
-                this.ruleForm.Code = rowData.Code;
+                this.ruleForm.Code = rowData.Code || rowData.SlashsoftCode;
                 this.ruleForm.SugarType = rowData.SugarType?rowData.SugarType.toString():'';
                 this.ruleForm.DiagnosisTime = rowData.DiagnosisTime;
                 this.ruleForm.InsulinMethod = rowData.InsulinMethod?rowData.InsulinMethod.toString():'0';
