@@ -341,7 +341,13 @@ export const asyncRoutes = [
         name: 'bloodSugarInfo',
         hidden: true,
         meta: { title: '记录血糖信息', roles: ['housekeeper'] }
-      }
+      },
+        {
+            path: 'vip-scheduling-list',
+            component: () => import('@/views/vip/vip-scheduling-list'),
+            name: 'vip-scheduling-list',
+            meta: { title: '用户排期历史', roles: ['housekeeper'] }
+        },
 
     ]
   },
@@ -375,6 +381,12 @@ export const asyncRoutes = [
         hidden: true,
         meta: { title: '任务详情', roles: ['nurse'] }
       },
+        {
+            path: 'vip-scheduling-list',
+            component: () => import('@/views/vip/vip-scheduling-list'),
+            name: 'vip-scheduling-list',
+            meta: { title: '用户排期历史', roles: ['nurse'] }
+        },
     ]
   },
   {

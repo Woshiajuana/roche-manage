@@ -14,7 +14,7 @@
                  </el-form-item>
              </el-col>
              <el-col :span="4">
-                 <el-form-item label="期次">
+                 <el-form-item label="已训练期次">
                      <el-select
                          v-model="listQuery.Sort"
                          placeholder="请选择期次" >

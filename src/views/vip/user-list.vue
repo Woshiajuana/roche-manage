@@ -16,8 +16,9 @@
             <el-col :span="4">
                 <el-form-item label="是否完成">
                     <el-select v-model="listQuery.IsPlanComplete" placeholder="请选择是否完成">
-                        <el-option :value="true" label="已完成"></el-option>
-                        <el-option :value="false" label="未完成"></el-option>
+                        <el-option value="1" label="已完成"></el-option>
+                        <el-option value="2" label="未完成"></el-option>
+                        <el-option value="3" label="未开始"></el-option>
                     </el-select>
                 </el-form-item>
             </el-col>
@@ -80,7 +81,7 @@
       <el-table-column label="序号" type="index" width="50"  align="center"></el-table-column>
       <el-table-column label="姓名" align="center">
         <template slot-scope="scope">
-            <span>{{ scope.row.Name }}</span>
+            <span>{{ scope.row.Name ||  scope.row.NickName }}</span>
         </template>
       </el-table-column>
        <el-table-column label="手机号" align="center">
@@ -128,17 +129,17 @@
             <span>{{ scope.row.IsPanlComplete?'是':'否' }}</span>
         </template>
       </el-table-column>
-<!--      <el-table-column label="完成训练时间" min-width="150px" align="center">-->
-<!--        <template slot-scope="scope">-->
-<!--            <span>{{ scope.row.LastPlanCompleteTime}}</span>-->
-<!--        </template>-->
-<!--      </el-table-column>-->
+      <el-table-column label="最后完成时间" min-width="150px" align="center">
+        <template slot-scope="scope">
+            <span>{{ scope.row.LastPlanCompleteTimeStr}}</span>
+        </template>
+      </el-table-column>
 <!--        <el-table-column label="完成训练期数" min-width="150px" align="center">-->
 <!--            <template slot-scope="scope">-->
 <!--                <span>{{ scope.row.PlanComplete}}</span>-->
 <!--            </template>-->
 <!--        </el-table-column>-->
-      <el-table-column label="操作" align="center" width="200" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="center" width="270" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
         <!-- <el-button type="primary" size="mini" @click="setUserInfo(row)">
             修改档案
@@ -146,17 +147,69 @@
             <el-button v-if="!row.IsSync" type="primary" size="mini" @click="isAudit(row)">
              立即核销
           </el-button> -->
-           <el-button v-if="row.status!='deleted'" size="mini" type="primary"   @click="viewReports(row)">
+           <el-button v-if="row.status!='deleted'" size="mini" type="primary" @click="viewReports(row)">
             查看详情
           </el-button>
+            <el-button v-if="row.status!='deleted'" size="mini" type="primary" @click="handleSeeBloodSugar(row)">
+                查看血糖
+            </el-button>
           <el-button type="primary" size="mini" @click="setUserInfo(row)">
-            {{row.IsArchives?'修改档案':'新建档案'}}
+            {{ row.IsArchives ? '修改档案' : '新建档案' }}
           </el-button>
         </template>
       </el-table-column>
     </el-table>
 
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.Page_index" :limit.sync="listQuery.Page_size" @pagination="getList" />
+
+      <el-dialog title="查看血糖" :visible.sync="objBlood.is">
+          <el-table
+              key="objBlood"
+              :data="objBlood.data"
+              border
+              fit
+              highlight-current-row
+              style="width: 100%;">
+              <el-table-column label="序号" type="index" width="50" align="center" />
+              <!-- <el-table-column label="次数" align="center">
+                <template slot-scope="scope">
+                  <span>{{ scope.row.Time }}</span>
+                </template>
+              </el-table-column> -->
+              <el-table-column label="测试时间" min-width="180px" align="center">
+                  <template slot-scope="scope">
+                      <span>{{ scope.row.TestDateStr +"  "+ scope.row.TestTime }}</span>
+                  </template>
+              </el-table-column>
+              <el-table-column label="餐点" align="center">
+                  <template slot-scope="scope">
+                      <span>{{ scope.row.TimeStepStr }}</span>
+                  </template>
+              </el-table-column>
+              <el-table-column label="血糖值" align="center">
+                  <template slot-scope="scope">
+                      <span>{{ scope.row.Bloodsugar }}</span>
+                  </template>
+              </el-table-column>
+              <el-table-column label="血糖状态" class-name="status-col" width="110" align="center">
+                  <template slot-scope="scope">
+                      <span>{{ scope.row.GlsStr }}</span>
+                  </template>
+              </el-table-column>
+              <el-table-column label="备注" min-width="100px" align="center">
+                  <template slot-scope="scope">
+                      <span>{{ scope.row.Remark }}</span>
+                  </template>
+              </el-table-column>
+          </el-table>
+          <pagination v-show="objBlood.total>0" :total="objBlood.total"
+                      :page.sync="objBlood.query.Page_index" :limit.sync="objBlood.query.Page_size" @pagination="getBloodSugarList" />
+          <div slot="footer" class="dialog-footer">
+              <el-button @click="handleCloseSeeBloodSugar">
+                  关闭
+              </el-button>
+          </div>
+      </el-dialog>
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm"  :model="temp" label-position="left" label-width="110px" style="width: 400px; margin-left:50px;">
         <el-form-item label="姓名">
@@ -241,12 +294,40 @@ export default {
         update: '查看详情',
         create: '新增'
       },
+        objBlood: {
+          is: false,
+          data: [],
+            total: 0,
+            query: {
+                Page_index: 1,
+                Page_size: 10,
+            }
+        }
     }
   },
   created() {
     this.getList()
   },
   methods: {
+      handleCloseSeeBloodSugar () {
+          this.objBlood = { is: false, data: [], total: 0, query: { Page_index: 1, Page_size: 10 }};
+      },
+      getBloodSugarList () {
+          fetchData('/User/VipUser/GetTestSugarList', this.objBlood.query).then(response => {
+              if (response.Data) {
+                  this.objBlood.data = response.Data.Data;
+                  this.objBlood.total = response.Data.Count
+              }
+          }).catch(error => {
+              console.log(error)
+          })
+      },
+      handleSeeBloodSugar (item) {
+          this.handleCloseSeeBloodSugar();
+          this.objBlood.query.UserId = item.Id;
+          this.getBloodSugarList();
+          this.objBlood.is = true;
+      },
     getList() { // 获取列表数据
       this.listLoading = true
       fetchData('/User/VipUser/GetUserVipList',this.listQuery).then(response => {
