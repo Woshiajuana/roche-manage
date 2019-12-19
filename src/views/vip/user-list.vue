@@ -22,7 +22,7 @@
                 </el-form-item>
             </el-col>
             <el-col :span="4">
-                <el-form-item label="期次">
+                <el-form-item label="已训练期次">
                     <el-select
                         v-model="listQuery.Sort"
                         placeholder="请选择期次" >
@@ -128,16 +128,16 @@
             <span>{{ scope.row.IsPanlComplete?'是':'否' }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="完成训练时间" min-width="150px" align="center">
-        <template slot-scope="scope">
-            <span>{{ scope.row.LastPlanCompleteTime}}</span>
-        </template>
-      </el-table-column>
-        <el-table-column label="完成训练期数" min-width="150px" align="center">
-            <template slot-scope="scope">
-                <span>{{ scope.row.PlanComplete}}</span>
-            </template>
-        </el-table-column>
+<!--      <el-table-column label="完成训练时间" min-width="150px" align="center">-->
+<!--        <template slot-scope="scope">-->
+<!--            <span>{{ scope.row.LastPlanCompleteTime}}</span>-->
+<!--        </template>-->
+<!--      </el-table-column>-->
+<!--        <el-table-column label="完成训练期数" min-width="150px" align="center">-->
+<!--            <template slot-scope="scope">-->
+<!--                <span>{{ scope.row.PlanComplete}}</span>-->
+<!--            </template>-->
+<!--        </el-table-column>-->
       <el-table-column label="操作" align="center" width="200" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
         <!-- <el-button type="primary" size="mini" @click="setUserInfo(row)">
