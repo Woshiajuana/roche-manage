@@ -1,6 +1,7 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
+        <span>{{listQuery.Status}}</span>
       <el-row>
         <el-form ref="pageForm" :inline="true" :model="listQuery" class="demo-form-inline">
           <el-col :span="4">
@@ -17,7 +18,7 @@
                 <el-form-item label="状态">
                     <el-select
                         v-model="listQuery.Status"
-                        placeholder="请选择期次" >
+                        placeholder="请选择状态" >
                         <el-option value="1" label="后天任务"></el-option>
                         <el-option value="2" label="明天任务"></el-option>
                         <el-option value="3" label="当天任务"></el-option>
@@ -28,13 +29,13 @@
           <el-col :span="8">
             <el-form-item label="排期时间">
               <el-row>
-                <el-col :span="9">
+                <el-col :span="11">
                   <el-form-item prop="date1">
                     <el-date-picker v-model="listQuery.Stime" type="date" placeholder="开始日期" value-format=" yyyy-MM-dd" style="width: 100%;" />
                   </el-form-item>
                 </el-col>
-                <el-col class="line" :span="2">——</el-col>
-                <el-col :span="9">
+                <el-col class="line" :span="2">—</el-col>
+                <el-col :span="11">
                   <el-form-item prop="date2">
                     <el-date-picker v-model="listQuery.Etime" type="date" placeholder="结束日期" value-format=" yyyy-MM-dd" style="width: 100%;" />
                   </el-form-item>
@@ -106,11 +107,6 @@
           <span>{{ scope.row.ImportTimeStr }}</span>
         </template>
       </el-table-column>
-       <el-table-column label="状态" align="center">
-        <template slot-scope="scope">
-         <span>{{ scope.row.ImportUserID }}</span>
-        </template>
-      </el-table-column>
        <el-table-column label="首次电话日期" min-width="160" align="center">
         <template slot-scope="scope">
           <span>{{ scope.row.FirstVisitTimeStr }}</span>
@@ -121,9 +117,14 @@
           <!--<span>{{ scope.row.FirstVisitUserID }}</span>-->
         <!--</template>-->
       <!--</el-table-column>-->
+        <el-table-column label="状态" align="center">
+            <template slot-scope="scope">
+                <span>{{ scope.row.Status }}</span>
+            </template>
+        </el-table-column>
       <el-table-column label="本次排期时间" min-width="160" align="center">
         <template slot-scope="scope">
-          <span>{{ scope.row.PlanTimeStr }}</span>
+            <span>{{ scope.row.PlanTimeStr + ' ' + scope.row.Hour }}</span>
         </template>
       </el-table-column>
        <el-table-column label="拒绝次数" align="center">
@@ -174,12 +175,6 @@ export default {
   components: { Pagination },
   data() {
     return {
-        objStatus: {
-          '1': '后天任务',
-          '2': '明天任务',
-          '3': '当天任务',
-          '4': '已过期',
-        },
       tableKey: 0,
       list: null,
       total: 0,
@@ -191,6 +186,7 @@ export default {
         Mobile: '',
         Page_index: 1,
         Page_size: 10,
+          Status: '',
         Scene: 10 // 首次任务
       },
       dialogFormVisible: false,
@@ -230,6 +226,7 @@ export default {
       this.listQuery.Etime = ''
       this.listQuery.Name = ''
       this.listQuery.Mobile = ''
+      this.listQuery.Status = ''
       this.getList()
     },
     beginTask(row) { // 开始任务跳转

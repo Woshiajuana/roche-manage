@@ -14,6 +14,18 @@
                  </el-form-item>
              </el-col>
              <el-col :span="4">
+                 <el-form-item label="状态">
+                     <el-select
+                         v-model="listQuery.Status"
+                         placeholder="请选择状态" >
+                         <el-option value="1" label="后天任务"></el-option>
+                         <el-option value="2" label="明天任务"></el-option>
+                         <el-option value="3" label="当天任务"></el-option>
+                         <el-option value="4" label="已过期"></el-option>
+                     </el-select>
+                 </el-form-item>
+             </el-col>
+             <el-col :span="4">
                  <el-form-item label="已训练期次">
                      <el-select
                          v-model="listQuery.Sort"
@@ -28,15 +40,15 @@
                  </el-form-item>
              </el-col>
               <el-col :span="8">
-                <el-form-item label="创建时间">
+                <el-form-item label="排期时间">
                    <el-row>
-                    <el-col :span="9">
+                    <el-col :span="11">
                         <el-form-item prop="date1">
                             <el-date-picker type="date" placeholder="开始日期" value-format=" yyyy-MM-dd" v-model="listQuery.Stime" style="width: 100%;"></el-date-picker>
                         </el-form-item>
                     </el-col>
                     <el-col class="line" :span="2">——</el-col>
-                    <el-col :span="9">
+                    <el-col :span="11">
                         <el-form-item prop="date2">
                             <el-date-picker type="date" placeholder="结束日期" value-format=" yyyy-MM-dd" v-model="listQuery.Etime" style="width: 100%;"></el-date-picker>
                         </el-form-item>
@@ -78,26 +90,31 @@
     >
       <el-table-column label="序号" type="index" align="center" width="50"></el-table-column>
 
-      <el-table-column label="导入日期" align="center">
-        <template slot-scope="scope">
-            <span>{{ scope.row.PlanTimeStr }}</span>
-        </template>
-      </el-table-column>
-       <el-table-column label="创建人" width="150px" align="center">
+      <!--<el-table-column label="导入日期" align="center">-->
+        <!--<template slot-scope="scope">-->
+            <!--<span>{{ scope.row.PlanTimeStr }}</span>-->
+        <!--</template>-->
+      <!--</el-table-column>-->
+       <el-table-column label="用户名称" width="150px" align="center">
         <template slot-scope="scope">
             <span>{{ scope.row.Name }}</span>
         </template>
       </el-table-column>
-       <el-table-column label="首次电话日期" align="center">
-        <template slot-scope="scope">
-            <span>{{ scope.row.FirstVisitTimeStr }}</span>
-        </template>
-      </el-table-column>
-       <el-table-column label="首访人" width="150px" align="center">
-        <template slot-scope="scope">
-            <span>{{ scope.row.FirstVisitUserID }}</span>
-        </template>
-      </el-table-column>
+        <el-table-column label="手机号" min-width="110" align="center">
+            <template slot-scope="scope">
+                <span>{{ scope.row.Mobile }}</span>
+            </template>
+        </el-table-column>
+       <!--<el-table-column label="首次电话日期" align="center">-->
+        <!--<template slot-scope="scope">-->
+            <!--<span>{{ scope.row.FirstVisitTimeStr }}</span>-->
+        <!--</template>-->
+      <!--</el-table-column>-->
+       <!--<el-table-column label="首访人" width="150px" align="center">-->
+        <!--<template slot-scope="scope">-->
+            <!--<span>{{ scope.row.FirstVisitUserID }}</span>-->
+        <!--</template>-->
+      <!--</el-table-column>-->
        <el-table-column label="上次训练时间" align="center">
         <template slot-scope="scope">
             <span>{{ scope.row.BeforePlanTime }}</span>
@@ -113,9 +130,14 @@
                 <span>{{ scope.row.PlanName }}</span>
             </template>
         </el-table-column>
+        <el-table-column label="状态" align="center">
+            <template slot-scope="scope">
+                <span>{{ scope.row.Status }}</span>
+            </template>
+        </el-table-column>
        <el-table-column label="本次排期时间" align="center">
         <template slot-scope="scope">
-            <span>{{ scope.row.PlanTimeStr }}</span>
+            <span>{{ scope.row.PlanTimeStr + ' ' + scope.row.Hour }}</span>
         </template>
       </el-table-column>
       <el-table-column label="拒绝次数" align="center">
@@ -178,7 +200,8 @@ export default {
         Mobile:'',
         Page_index: 1,
         Page_size: 10,
-         Scene: 11
+          Status: '',
+          Scene: 11
       },
       dialogFormVisible: false,
       temp:{
@@ -218,6 +241,7 @@ export default {
       this.listQuery.Name = '';
       this.listQuery.Mobile = '';
       this.listQuery.Sort = '';
+      this.listQuery.Status = '';
       this.getList()
     },
      beginTask(row){ //开始任务跳转
