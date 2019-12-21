@@ -13,8 +13,20 @@
               <el-input v-model="listQuery.Mobile" placeholder="请输入手机" />
             </el-form-item>
           </el-col>
-          <el-col :span="10">
-            <el-form-item label="创建时间">
+            <el-col :span="4">
+                <el-form-item label="状态">
+                    <el-select
+                        v-model="listQuery.Status"
+                        placeholder="请选择期次" >
+                        <el-option value="1" label="后天任务"></el-option>
+                        <el-option value="2" label="明天任务"></el-option>
+                        <el-option value="3" label="当天任务"></el-option>
+                        <el-option value="4" label="已过期"></el-option>
+                    </el-select>
+                </el-form-item>
+            </el-col>
+          <el-col :span="8">
+            <el-form-item label="排期时间">
               <el-row>
                 <el-col :span="9">
                   <el-form-item prop="date1">
@@ -69,7 +81,7 @@
           <span>{{ scope.row.Name }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="姓名" width="150px" align="center">
+      <el-table-column label="任务名称" width="150px" align="center">
         <template slot-scope="scope">
             <span>{{ scope.row.PlanName }}</span>
         </template>
@@ -94,7 +106,7 @@
           <span>{{ scope.row.ImportTimeStr }}</span>
         </template>
       </el-table-column>
-       <el-table-column label="创建人" align="center">
+       <el-table-column label="状态" align="center">
         <template slot-scope="scope">
          <span>{{ scope.row.ImportUserID }}</span>
         </template>
@@ -104,11 +116,11 @@
           <span>{{ scope.row.FirstVisitTimeStr }}</span>
         </template>
       </el-table-column>
-       <el-table-column label="首访人" align="center">
-        <template slot-scope="scope">
-          <span>{{ scope.row.FirstVisitUserID }}</span>
-        </template>
-      </el-table-column>
+       <!--<el-table-column label="首访人" align="center">-->
+        <!--<template slot-scope="scope">-->
+          <!--<span>{{ scope.row.FirstVisitUserID }}</span>-->
+        <!--</template>-->
+      <!--</el-table-column>-->
       <el-table-column label="本次排期时间" min-width="160" align="center">
         <template slot-scope="scope">
           <span>{{ scope.row.PlanTimeStr }}</span>
@@ -162,6 +174,12 @@ export default {
   components: { Pagination },
   data() {
     return {
+        objStatus: {
+          '1': '后天任务',
+          '2': '明天任务',
+          '3': '当天任务',
+          '4': '已过期',
+        },
       tableKey: 0,
       list: null,
       total: 0,
