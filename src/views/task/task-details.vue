@@ -235,7 +235,7 @@
                                     </template>
                                 </el-table-column>
                             </el-table>
-                            <pagination v-show="total>0" :total="total" :page.sync="listQuery.Page_index" :limit.sync="listQuery.Page_size" @pagination="getList" />
+                            <pagination :autoScroll="false" v-show="total>0" :total="total" :page.sync="listQuery.Page_index" :limit.sync="listQuery.Page_size" @pagination="getList" />
 
                         </el-tab-pane>
                         <el-tab-pane label="任务报告" name="second" v-if="!$route.query.isFirst">
@@ -419,6 +419,7 @@
                     if (response.Data) {
                         this.listPlan = response.Data
                         //                        this.total = response.Data.Count
+                        this.getList();
                     }
                     this.listPlanLoading = false
                 }).catch(error => {
@@ -440,9 +441,9 @@
                         this.ruleForm.Complications.push(item.toString())
                     })
                 }
-                this.ruleForm.Sex = this.rowData.Sex ? this.rowData.Sex.toString() : ''
-                this.getList()
-                this.getPlanList()
+                this.ruleForm.Sex = this.rowData.Sex ? this.rowData.Sex.toString() : '';
+                this.getList();
+                this.getPlanList();
             },
             handleClick(tab, event) {
                 this.tabsIndex = tab.index
@@ -455,8 +456,9 @@
             },
             getList() { // 获取列表数据 血糖
                 this.listLoading = true
-                this.listQuery.UserId = this.$route.query.UserId
-                fetchData('/User/VipUser/GetTestSugarList', this.listQuery).then(response => {
+                this.listQuery.UserId = this.$route.query.UserId;
+                this.listQuery.PlanId = this.$route.query.Id;
+                fetchData('/User/VipUser/GetTestSugarListByPlan', this.listQuery).then(response => {
                     if (response.Data) {
                         //          debugger
                         this.list = response.Data.Data
