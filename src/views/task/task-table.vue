@@ -16,6 +16,7 @@
              <el-col :span="4">
                  <el-form-item label="状态">
                      <el-select
+						clearable
                          v-model="listQuery.Status"
                          placeholder="请选择状态" >
                          <el-option value="1" label="后天任务"></el-option>
@@ -28,6 +29,7 @@
              <el-col :span="4">
                  <el-form-item label="已训练期次">
                      <el-select
+						clearable
                          v-model="listQuery.Sort"
                          placeholder="请选择期次" >
                          <el-option value="1" label="一期"></el-option>

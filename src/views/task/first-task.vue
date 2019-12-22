@@ -1,7 +1,6 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-        <span>{{listQuery.Status}}</span>
       <el-row>
         <el-form ref="pageForm" :inline="true" :model="listQuery" class="demo-form-inline">
           <el-col :span="4">
@@ -17,10 +16,11 @@
             <el-col :span="4">
                 <el-form-item label="状态">
                     <el-select
+						clearable
                         v-model="listQuery.Status"
                         placeholder="请选择状态" >
-                        <el-option value="1" label="后天任务"></el-option>
-                        <el-option value="2" label="明天任务"></el-option>
+                        <!--<el-option value="1" label="后天任务"></el-option>-->
+                        <!--<el-option value="2" label="明天任务"></el-option>-->
                         <el-option value="3" label="当天任务"></el-option>
                         <el-option value="4" label="已过期"></el-option>
                     </el-select>

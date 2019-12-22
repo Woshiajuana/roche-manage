@@ -15,7 +15,7 @@
               </el-col>
             <el-col :span="4">
                 <el-form-item label="是否完成">
-                    <el-select v-model="listQuery.IsPlanComplete" placeholder="请选择是否完成">
+                    <el-select clearable v-model="listQuery.IsPlanComplete" placeholder="请选择是否完成">
                         <el-option value="1" label="已完成"></el-option>
                         <el-option value="2" label="未完成"></el-option>
                         <el-option value="3" label="未开始"></el-option>
@@ -24,7 +24,7 @@
             </el-col>
             <el-col :span="4">
                 <el-form-item label="已训练期次">
-                    <el-select
+                    <el-select clearable
                         v-model="listQuery.Sort"
                         placeholder="请选择期次" >
                         <el-option value="1" label="一期"></el-option>
