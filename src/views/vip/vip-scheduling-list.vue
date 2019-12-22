@@ -74,7 +74,7 @@
       </el-table-column>
       <el-table-column label="操作" align="center" width="120" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
-           <el-button v-if="row.status!='deleted'" size="mini" type="primary" @click="handleSeeBloodSugar(row)">
+           <el-button v-if="row.status!='deleted'" size="mini" type="primary" @click="handleSeeScheduling(row)">
             查看详情
           </el-button>
         </template>
@@ -83,10 +83,10 @@
 
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.Page_index" :limit.sync="listQuery.Page_size" @pagination="getList" />
 
-      <el-dialog width="70%" title="查看排期" :visible.sync="objBlood.is">
+      <el-dialog width="70%" title="查看排期" :visible.sync="objScheduling.is">
           <el-table
-              key="objBlood"
-              :data="objBlood.data"
+              key="objScheduling"
+              :data="objScheduling.data"
               border
               fit
               highlight-current-row
@@ -129,13 +129,13 @@
               <el-table-column label="操作" align="center"  width="240" class-name="small-padding fixed-width">
                   <template slot-scope="scope">
                       <el-button type="text" @click="handleSeeTaskList(scope.row)">查看任务</el-button>
-                      <el-button type="text" @click="handleSeeTaskList(scope.row)">查看血糖</el-button>
+                      <el-button type="text" @click="handleSeeBloodSugar(scope.row)">查看血糖</el-button>
                       <el-button type="text" @click="handleSeeTaskList(scope.row)">查看报告</el-button>
                   </template>
               </el-table-column>
           </el-table>
           <div slot="footer" class="dialog-footer">
-              <el-button @click="handleCloseSeeBloodSugar">
+              <el-button @click="handleCloseSeeScheduling">
                   关闭
               </el-button>
           </div>
@@ -153,8 +153,54 @@
           </div>
       </el-dialog>
 
-
-      
+      <el-dialog title="查看血糖" :visible.sync="objBlood.is">
+          <el-table
+              key="objBlood"
+              :data="objBlood.data"
+              border
+              fit
+              highlight-current-row
+              style="width: 100%;">
+              <el-table-column label="序号" type="index" width="50" align="center" />
+              <!-- <el-table-column label="次数" align="center">
+                <template slot-scope="scope">
+                  <span>{{ scope.row.Time }}</span>
+                </template>
+              </el-table-column> -->
+              <el-table-column label="测试时间" min-width="180px" align="center">
+                  <template slot-scope="scope">
+                      <span>{{ scope.row.TestDateStr +"  "+ scope.row.TestTime }}</span>
+                  </template>
+              </el-table-column>
+              <el-table-column label="餐点" align="center">
+                  <template slot-scope="scope">
+                      <span>{{ scope.row.TimeStepStr }}</span>
+                  </template>
+              </el-table-column>
+              <el-table-column label="血糖值" align="center">
+                  <template slot-scope="scope">
+                      <span>{{ scope.row.Bloodsugar }}</span>
+                  </template>
+              </el-table-column>
+              <el-table-column label="血糖状态" class-name="status-col" width="110" align="center">
+                  <template slot-scope="scope">
+                      <span>{{ scope.row.GlsStr }}</span>
+                  </template>
+              </el-table-column>
+              <el-table-column label="备注" min-width="100px" align="center">
+                  <template slot-scope="scope">
+                      <span>{{ scope.row.Remark }}</span>
+                  </template>
+              </el-table-column>
+          </el-table>
+          <pagination v-show="objBlood.total>0" :total="objBlood.total"
+                      :page.sync="objBlood.query.Page_index" :limit.sync="objBlood.query.Page_size" @pagination="getBloodSugarList" />
+          <div slot="footer" class="dialog-footer">
+              <el-button @click="handleCloseSeeBloodSugar">
+                  关闭
+              </el-button>
+          </div>
+      </el-dialog>
   </div>
 </template>
 
@@ -197,7 +243,7 @@ export default {
         update: '查看详情',
         create: '新增'
       },
-        objBlood: {
+        objScheduling: {
             is: false,
             data: [],
             total: 0,
@@ -255,12 +301,42 @@ export default {
             { val: '6', name: '其它' },
             { val: '7', name: '无并发症' }
         ],
+        objBlood: {
+            is: false,
+            data: [],
+            total: 0,
+            query: {
+                Page_index: 1,
+                Page_size: 10,
+            }
+        }
     }
   },
   created() {
     this.getList()
   },
   methods: {
+      handleCloseSeeBloodSugar () {
+          this.objBlood = { is: false, data: [], total: 0, query: { Page_index: 1, Page_size: 10 }};
+      },
+      getBloodSugarList () {
+          fetchData('/User/VipUser/GetTestSugarListByPlan', this.objBlood.query).then(response => {
+              if (response.Data) {
+                  this.objBlood.data = response.Data.Data;
+                  this.objBlood.total = response.Data.Count
+              }
+          }).catch(error => {
+              console.log(error)
+          })
+      },
+      handleSeeBloodSugar (item) {
+          this.handleCloseSeeBloodSugar();
+          this.objBlood.query.UserId = item.UserId;
+          this.objBlood.query.PlanId = item.Id;
+          this.getBloodSugarList();
+          this.objBlood.is = true;
+      },
+
       handleSeeTaskList(item) {
           this.arrTasks = [];
           fetchData('/User/VipUser/GetTrainPatientUsers', {
@@ -280,21 +356,21 @@ export default {
               console.log(error)
           })
       },
-      handleCloseSeeBloodSugar () {
-          this.objBlood = { is: false, data: [], query: { Page_index: 1, Page_size: 10 }};
+      handleCloseSeeScheduling () {
+          this.objScheduling = { is: false, data: [], query: { Page_index: 1, Page_size: 10 }};
       },
-      handleSeeBloodSugar (item) {
-          this.handleCloseSeeBloodSugar();
+      handleSeeScheduling (item) {
+          this.handleCloseSeeScheduling();
           fetchData('/User/VipUser/GetPlanList', {
               Data: item.UserId
           }).then(response => {
               if (response.Data) {
-                  this.objBlood.data = response.Data
+                  this.objScheduling.data = response.Data
               }
           }).catch(error => {
               console.log(error)
           });
-          this.objBlood.is = true;
+          this.objScheduling.is = true;
       },
     getList() { // 获取列表数据
       this.listLoading = true
