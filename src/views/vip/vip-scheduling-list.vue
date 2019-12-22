@@ -130,7 +130,7 @@
                   <template slot-scope="scope">
                       <el-button type="text" @click="handleSeeTaskList(scope.row)">查看任务</el-button>
                       <el-button type="text" @click="handleSeeBloodSugar(scope.row)">查看血糖</el-button>
-                      <el-button type="text" @click="handleSeeTaskList(scope.row)">查看报告</el-button>
+                      <el-button type="text" @click="handleSeeReport(scope.row)">查看报告</el-button>
                   </template>
               </el-table-column>
           </el-table>
@@ -316,6 +316,16 @@ export default {
     this.getList()
   },
   methods: {
+      handleSeeReport (item) {
+          let { TaskType, Id, UserId } = item;
+          if (TaskType != 2)
+              return this.$message({
+                  message: `该排期还没有报告哦！`,
+                  type: 'info',
+                  duration: 2000
+              });
+          window.open(`https://api.rocheprogram.com/dist/adviser_report.html?userid=${UserId}&id=${Id}&v=${new Date().getTime()}`);
+      },
       handleCloseSeeBloodSugar () {
           this.objBlood = { is: false, data: [], total: 0, query: { Page_index: 1, Page_size: 10 }};
       },

@@ -200,11 +200,11 @@ export default {
       //   path: '/view-reports',
       //   query: row
       // })
-        
-      console.log(row.Url)
-       this.$alert('<a  class="target" href="'+row.Url+'" target="_blank">'+row.Url+'</a>', '查看报告', {
-          dangerouslyUseHTMLString: true
-        });
+        window.open(row.Url);
+//      console.log(row.Url)
+//       this.$alert('<a  class="target" href="'+row.Url+'" target="_blank">'+row.Url+'</a>', '查看报告', {
+//          dangerouslyUseHTMLString: true
+//        });
     },
     copyUrl(row) {
       if(row.Url){
