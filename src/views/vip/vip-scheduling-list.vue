@@ -93,22 +93,27 @@
               size="small"
               style="width: 100%;">
               <el-table-column label="序号" type="index" width="50" align="center" />
-              <el-table-column label="排期日期" align="center">
+              <el-table-column label="排期日期" align="center" prod="PlanTimeStr">
                   <template slot-scope="scope">
-                      <el-date-picker v-model="scope.row.PlanTimeStr" type="date" value-format="yyyy-MM-dd" placeholder="请选择日期" style="width:100%;" :readonly="true" />
+                      <span>{{ scope.row.PlanTimeStr }}</span>
+                      <!--<el-date-picker v-model="scope.row.PlanTimeStr" type="date" value-format="yyyy-MM-dd" placeholder="请选择日期" style="width:100%;" :readonly="true" />-->
                   </template>
               </el-table-column>
               <el-table-column label="排期时间" align="center">
                   <template slot-scope="scope">
-                      <el-select v-model="scope.row.Hour" class="filter-item" placeholder="请选择时间" style="width:100%;" :disabled="true">
-                          <el-option v-for="item in hourArr" :key="item" :label="item" :value="item" />
-                      </el-select>
+
+                      <span>{{ scope.row.Hour }}</span>
+                      <!--<el-select v-model="scope.row.Hour" class="filter-item" placeholder="请选择时间" style="width:100%;" :disabled="true">-->
+                          <!--<el-option v-for="item in hourArr" :key="item" :label="item" :value="item" />-->
+                      <!--</el-select>-->
                   </template>
               </el-table-column>
 
               <el-table-column label="备注" align="center">
                   <template slot-scope="scope">
-                      <el-input v-model="scope.row.TaskRemarkCreate" class="filter-item" placeholder="请输入备注" style="width:100%;" :disabled="true" />
+
+                      <span>{{ scope.row.TaskRemarkCreate }}</span>
+                      <!--<el-input v-model="scope.row.TaskRemarkCreate" class="filter-item" placeholder="请输入备注" style="width:100%;" :disabled="true" />-->
                   </template>
               </el-table-column>
               <el-table-column label="任务名称" align="center">
@@ -121,9 +126,11 @@
                       <span>{{ TaskTypeStr[scope.row.TaskType] }}</span>
                   </template>
               </el-table-column>
-              <el-table-column label="操作" align="center" width="120" class-name="small-padding fixed-width">
+              <el-table-column label="操作" align="center"  width="240" class-name="small-padding fixed-width">
                   <template slot-scope="scope">
-                      <el-button type="text" style="margin-left: 20px" @click="handleSeeTaskList(scope.row)">查看任务清单</el-button>
+                      <el-button type="text" @click="handleSeeTaskList(scope.row)">查看任务</el-button>
+                      <el-button type="text" @click="handleSeeTaskList(scope.row)">查看血糖</el-button>
+                      <el-button type="text" @click="handleSeeTaskList(scope.row)">查看报告</el-button>
                   </template>
               </el-table-column>
           </el-table>
@@ -145,6 +152,9 @@
               </el-button>
           </div>
       </el-dialog>
+
+
+      
   </div>
 </template>
 
