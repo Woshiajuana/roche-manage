@@ -130,7 +130,7 @@
                   <template slot-scope="scope">
                       <el-button type="text" @click="handleSeeTaskList(scope.row)">查看任务</el-button>
                       <el-button type="text" @click="handleSeeBloodSugar(scope.row)">查看血糖</el-button>
-                      <el-button type="text" @click="handleSeeReport(scope.row)">查看报告</el-button>
+                      <el-button type="text" @click="handleSeeReport(scope.row)"  v-if="scope.$index !== 0">查看报告</el-button>
                   </template>
               </el-table-column>
           </el-table>
