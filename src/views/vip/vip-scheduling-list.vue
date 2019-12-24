@@ -353,12 +353,14 @@ export default {
       },
 
       handleSeeTaskList(item) {
+          let { TaskRemarkDetail } = item;
           this.arrTasks = [];
           fetchData('/User/VipUser/GetTrainPatientUsers', {
               Data: item.TrainPatientIds
           }).then(response => {
-              this.arrTasks = (response && response.Data) || []
+              this.arrTasks = (response && response.Data) || [];
               if (this.arrTasks.length) {
+                  this.arrTasks.push({ CrowdLabel: '备注', TaskDec: TaskRemarkDetail || '无' });
                   this.isTaskPreviewDialog = true
               } else {
                   this.$message({

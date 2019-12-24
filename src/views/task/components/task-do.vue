@@ -42,7 +42,7 @@
             </el-col>
         </el-row>
         <div style="padding:10px 0;">
-            <el-button type="primary" :loading="listLoading" @click="isTaskPreviewDialog = true">任务预览</el-button>
+            <el-button type="primary" :loading="listLoading" @click="handlePreview">任务预览</el-button>
             <el-button v-if="!rowData.IsSendReport && !$route.query.isFirst" type="primary" @click="sendOutFun">发布报告</el-button>
             <el-button @click="prevPage">返回</el-button>
         </div>
@@ -165,6 +165,18 @@
             this.getDataList();
         },
         methods: {
+            handlePreview () {
+                if (this.selectedTasks && this.selectedTasks.length) {
+                    this.selectedTasks.push({ CrowdLabel: '备注', TaskDec: this.TaskRemarkDetail || '无' });
+                    this.isTaskPreviewDialog = true
+                } else {
+                    this.$message({
+                        message: `该排期还没有任务清单！`,
+                        type: 'info',
+                        duration: 2000
+                    })
+                }
+            },
             handleChange(val) {
                 // console.log(val);
             },
