@@ -52,6 +52,10 @@
                 <dt>{{index+1}}、{{item.CrowdLabel}}</dt>
                 <dd style="padding-left: 10px">{{item.TaskDec}}</dd>
             </dl>
+            <dl>
+                <dt>{{selectedTasks.length + 1}}、备注</dt>
+                <dd style="padding-left: 10px">{{TaskRemarkDetail || '无'}}</dd>
+            </dl>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="isTaskPreviewDialog = false">
                     取消
@@ -167,7 +171,6 @@
         methods: {
             handlePreview () {
                 if (this.selectedTasks && this.selectedTasks.length) {
-                    this.selectedTasks.push({ CrowdLabel: '备注', TaskDec: this.TaskRemarkDetail || '无' });
                     this.isTaskPreviewDialog = true
                 } else {
                     this.$message({
