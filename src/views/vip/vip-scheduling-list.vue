@@ -126,9 +126,10 @@
                       <span>{{ TaskTypeStr[scope.row.TaskType] }}</span>
                   </template>
               </el-table-column>
-              <el-table-column label="操作" align="center"  width="240" class-name="small-padding fixed-width">
+              <el-table-column label="操作" align="center"  width="300" class-name="small-padding fixed-width">
                   <template slot-scope="scope">
                       <el-button type="text" @click="handleSeeTaskList(scope.row)">查看任务</el-button>
+                      <el-button type="text" @click="handleSeeBloodSugarScheme(scope.row)">控糖方案</el-button>
                       <el-button type="text" @click="handleSeeBloodSugar(scope.row)">查看血糖</el-button>
                       <el-button type="text" @click="handleSeeReport(scope.row)"  v-if="scope.$index !== 0">查看报告</el-button>
                   </template>
@@ -316,6 +317,10 @@ export default {
     this.getList()
   },
   methods: {
+      handleSeeBloodSugarScheme (item) {
+          let { UserId } = item;
+          window.open(`https://api.91jkys.com/medical/user/partner-user/report?pId=${UserId}&aId=roche`);
+      },
       handleSeeReport (item) {
           let { TaskType, Id, UserId } = item;
           if (TaskType != 2)
