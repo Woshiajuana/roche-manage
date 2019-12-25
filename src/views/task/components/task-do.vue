@@ -96,10 +96,12 @@
                         </el-form-item>
                     </dl>
 
-                    <dt style="font-size: 14px">糖化血红蛋白</dt>
-                    <dl>HB1：{{temp.HB1}}</dl>
-                    <dl>HB2：{{temp.HB2}}</dl>
-                    <dl>报告：{{temp.HBReport}}</dl>
+                    <template v-if="temp.HBReport">
+                        <dt style="font-size: 14px">糖化血红蛋白</dt>
+                        <dl>HB1：{{temp.HB1}}</dl>
+                        <dl>HB2：{{temp.HB2}}</dl>
+                        <dl>报告：{{temp.HBReport}}</dl>
+                    </template>
 
                     <dt style="font-size: 14px">体重</dt>
                     <dl>指数：{{temp.BMI}}</dl>

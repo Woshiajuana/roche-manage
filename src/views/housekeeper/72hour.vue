@@ -82,14 +82,14 @@
                     <span>{{ scope.row.BeforePlanTime }}</span>
                 </template>
             </el-table-column>
-            <el-table-column label="下次训练时间" width="150px" align="center">
+            <el-table-column label="本次训练时间" width="150px" align="center">
                 <template slot-scope="scope">
-                    <span>{{ scope.row.PlanTimeStr }}</span>
+                    <span>{{ scope.row.PlanTimeStr }}   {{ scope.row.Hour>9?scope.row.Hour:'0'+scope.row.Hour }}:00</span>
                 </template>
             </el-table-column>
-            <el-table-column label="下次训练期数" width="150px" align="center">
+            <el-table-column label="本次训练期数" width="150px" align="center">
                 <template slot-scope="scope">
-                    <span>{{ scope.row.NextPlan }}</span>
+                    <span>{{ scope.row.Sort }}</span>
                 </template>
             </el-table-column>
             <el-table-column label="自传血糖数据" width="150px" align="center">

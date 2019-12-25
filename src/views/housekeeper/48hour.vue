@@ -82,14 +82,14 @@
           <span>{{ scope.row.BeforePlanTime }}  {{ scope.row.Hour>9?scope.row.Hour:'0'+scope.row.Hour}}:00</span>
         </template>
       </el-table-column>
-      <el-table-column label="下次训练时间" width="150px" align="center">
+      <el-table-column label="本次训练时间" width="150px" align="center">
         <template slot-scope="scope" v-if="scope.row.AfterPlanTime" >
           <span>{{ scope.row.AfterPlanTime }}  {{ scope.row.Hour>9?scope.row.Hour:'0'+scope.row.Hour }}:00</span>
         </template>
       </el-table-column>
-      <el-table-column label="下次训练期数" width="150px" align="center">
-        <template slot-scope="scope" v-if="scope.row.NextPlan">
-          <span>{{scope.row.NextPlan}}</span>
+      <el-table-column label="本次训练期数" width="150px" align="center">
+        <template slot-scope="scope" v-if="scope.row.Sort">
+          <span>{{scope.row.Sort}}</span>
         </template>
       </el-table-column>
       <el-table-column label="操作" align="center" width="260" class-name="small-padding fixed-width">
@@ -216,7 +216,7 @@ export default {
       }).catch((error) => {
           console.log(error)
       })
-    
+
     },
     wordsSend(row){
       this.dialogFormVisible = true;
