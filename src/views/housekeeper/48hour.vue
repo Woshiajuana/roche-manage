@@ -84,7 +84,7 @@
       </el-table-column>
       <el-table-column label="本次训练时间" width="150px" align="center">
         <template slot-scope="scope" v-if="scope.row.AfterPlanTime" >
-          <span>{{ scope.row.AfterPlanTime }}  {{ scope.row.Hour>9?scope.row.Hour:'0'+scope.row.Hour }}:00</span>
+          <span>{{ scope.row.PlanTimeStr }}  {{ scope.row.Hour>9?scope.row.Hour:'0'+scope.row.Hour }}:00</span>
         </template>
       </el-table-column>
       <el-table-column label="本次训练期数" width="150px" align="center">
