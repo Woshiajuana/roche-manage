@@ -41,6 +41,12 @@
                 <el-input v-model="TaskRemarkDetail " type="textarea" placeholder="请输入本次训练备注" />
             </el-col>
         </el-row>
+        <el-row :gutter="20">
+            <el-col :xs="24" :md="12" :lg="8" :xl="6">
+                <span style="display: inline-block; margin: 10px 0">护士备注：</span>
+                <el-input v-model="TaskNurseRemark " type="textarea" placeholder="请输入本次护士训练备注" />
+            </el-col>
+        </el-row>
         <div style="padding:10px 0;">
             <el-button type="primary" :loading="listLoading" @click="handlePreview">任务预览</el-button>
             <el-button v-if="!rowData.IsSendReport && !$route.query.isFirst" type="primary" @click="sendOutFun">发布报告</el-button>
@@ -55,6 +61,10 @@
             <dl>
                 <dt>{{selectedTasks.length + 1}}、备注</dt>
                 <dd style="padding-left: 10px">{{TaskRemarkDetail || '无'}}</dd>
+            </dl>
+            <dl>
+                <dt>{{selectedTasks.length + 2}}、护士备注</dt>
+                <dd style="padding-left: 10px">{{TaskNurseRemark || '无'}}</dd>
             </dl>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="isTaskPreviewDialog = false">
@@ -133,6 +143,9 @@
                 // 备注
                 TaskRemarkDetail: '',
 
+                // 护士备注
+                TaskNurseRemark: '',
+
                 // 预览任务弹窗
                 isTaskPreviewDialog: false,
 
@@ -193,7 +206,8 @@
                     {name:'运动',con:[]},
                     {name:'血糖监测',con:[]},
                     {name:'其它监测',con:[]},
-                    {name:'生活方式',con:[]}
+                    {name:'生活方式',con:[]},
+                    {name:'其他',con:[]}
                 ];
                 fetchData('/User/VipUser/GetTrainPatientConfigs',{}).then(response => {
                     if (response.Data) {
@@ -271,6 +285,7 @@
                     fetchData('/User/VipUser/SetPlanPatient', {
                         TrainPatientUsers: this.selectedTasks,
                         TaskRemarkDetail: this.TaskRemarkDetail,
+                        TaskNurseRemark: this.TaskNurseRemark,
                         PlanId: this.$route.query.Id,
                         UserId : this.$route.query.UserId,
                     }).then(response => {
@@ -419,6 +434,7 @@
                         //测试
                         //this.checkboxGroup = [42]
 						this.TaskRemarkDetail = response.Data[0].TaskRemarkDetail || '';
+						this.TaskNurseRemark = response.Data[0].TaskNurseRemark || '';
                         this.getTasksList(response.Data[0].TrainPatientIds);//查历史数据
                         // if(response.Data[0].TrainPatientIds){
                         //     if(response.Data[0].TrainPatientIds.length>0){

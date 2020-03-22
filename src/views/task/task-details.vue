@@ -199,6 +199,85 @@
                         <!--</el-tab-pane>-->
 
                         <el-tab-pane label="血糖记录" name="first">
+                            <el-row>
+                                <el-form ref="pageForm" :inline="true" :model="listQuery" class="demo-form-inline">
+                                    <el-col :span="6">
+                                        <el-form-item label="血糖值">
+                                            <el-row>
+                                                <el-col :span="11">
+                                                    <el-form-item>
+                                                        <el-input clearable v-model="listQuery.MinBloodsugar" placeholder="最小血糖值" />
+                                                    </el-form-item>
+                                                </el-col>
+                                                <el-col class="line" :span="2">—</el-col>
+                                                <el-col :span="11">
+                                                    <el-form-item>
+                                                        <el-input clearable v-model="listQuery.MaxBloodsugar" placeholder="最大血糖值" />
+                                                    </el-form-item>
+                                                </el-col>
+                                            </el-row>
+                                        </el-form-item>
+                                    </el-col>
+                                    <el-col :span="3">
+                                        <el-form-item label="血糖状态">
+                                            <el-select
+                                                clearable
+                                                v-model="listQuery.Gls"
+                                                placeholder="请选择血糖状态" >
+                                                <el-option value="1" label="低血糖"></el-option>
+                                                <el-option value="2" label="血糖值偏低"></el-option>
+                                                <el-option value="3" label="血糖值正常"></el-option>
+                                                <el-option value="4" label="高血糖"></el-option>
+                                            </el-select>
+                                        </el-form-item>
+                                    </el-col>
+                                    <el-col :span="3">
+                                        <el-form-item label="餐点">
+                                            <el-select
+                                                clearable
+                                                v-model="listQuery.TimeStep"
+                                                placeholder="请选择餐点" >
+                                                <el-option value="1" label="空腹"></el-option>
+                                                <el-option value="2" label="早餐后"></el-option>
+                                                <el-option value="3" label="午餐前"></el-option>
+                                                <el-option value="4" label="午餐后"></el-option>
+                                                <el-option value="5" label="晚餐前"></el-option>
+                                                <el-option value="6" label="晚餐后"></el-option>
+                                                <el-option value="7" label="睡前"></el-option>
+                                            </el-select>
+                                        </el-form-item>
+                                    </el-col>
+                                    <el-col :span="6">
+                                        <el-form-item label="测试时间">
+                                            <el-row>
+                                                <el-col :span="11">
+                                                    <el-form-item prop="date1">
+                                                        <el-date-picker v-model="listQuery.Stime" type="date" placeholder="开始日期" value-format=" yyyy-MM-dd" style="width: 100%;" />
+                                                    </el-form-item>
+                                                </el-col>
+                                                <el-col class="line" :span="2">—</el-col>
+                                                <el-col :span="11">
+                                                    <el-form-item prop="date2">
+                                                        <el-date-picker v-model="listQuery.Etime" type="date" placeholder="结束日期" value-format=" yyyy-MM-dd" style="width: 100%;" />
+                                                    </el-form-item>
+                                                </el-col>
+                                            </el-row>
+                                        </el-form-item>
+                                    </el-col>
+                                    <el-col :span="3">
+                                        <el-form-item>
+                                            <el-row :gutter="20">
+                                                <el-col :span="12">
+                                                    <el-button size="small" class="filter-item" type="primary" icon="el-icon-search" @click="getList">搜索</el-button>
+                                                </el-col>
+                                                <el-col :span="12">
+                                                    <el-button size="small" class="filter-item" type="primary" icon="el-icon-refresh" @click="handleResetSearch">重置</el-button>
+                                                </el-col>
+                                            </el-row>
+                                        </el-form-item>
+                                    </el-col>
+                                </el-form>
+                            </el-row>
                             <el-table
                                 :key="tableKey"
                                 v-loading="listLoading"
@@ -361,7 +440,13 @@
                 listPlanLoading: true,
                 listQuery: {
                     Page_index: 1,
-                    Page_size: 10
+                    Page_size: 10,
+                    Stime: '',
+                    Etime: '',
+                    TimeStep: '',
+                    Gls: '',
+                    MinBloodsugar: '',
+                    MaxBloodsugar: '',
                 },
                 rowData: {},
                 BTime: '',
@@ -456,11 +541,27 @@
                     console.log('任务报告')
                 }
             },
+            handleResetSearch () {
+                for(let key in this.listQuery) {
+                    if (key === 'Page_index') {
+                        this.listQuery[key] = 1;
+                    } else if (key === 'Page_size') {
+                        this.listQuery[key] = 10;
+                    } else {
+                        this.listQuery[key] = '';
+                    }
+                }
+                this.getList();
+            },
             getList() { // 获取列表数据 血糖
                 this.listLoading = true
                 this.listQuery.UserId = this.$route.query.UserId;
                 this.listQuery.PlanId = this.$route.query.Id;
-                fetchData('/User/VipUser/GetTestSugarListByPlan', this.listQuery).then(response => {
+                let options = {};
+                for(let key in this.listQuery) {
+                    this.listQuery[key] !== '' && (options[key] = this.listQuery[key]);
+                }
+                fetchData('/User/VipUser/GetTestSugarListByPlan', options).then(response => {
                     if (response.Data) {
                         //          debugger
                         this.list = response.Data.Data
