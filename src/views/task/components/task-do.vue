@@ -156,7 +156,8 @@
                     {name:'运动',con:[]},
                     {name:'血糖监测',con:[]},
                     {name:'其它监测',con:[]},
-                    {name:'生活方式',con:[]}
+                    {name:'生活方式',con:[]},
+                    {name:'注射',con:[]},
                 ],
                 checkboxGroup:[],//任务清单折叠面板中已勾选的数据 Ids
                 taskAll:[],//任务清单模板所有数据，未处理
@@ -207,7 +208,7 @@
                     {name:'血糖监测',con:[]},
                     {name:'其它监测',con:[]},
                     {name:'生活方式',con:[]},
-                    {name:'其他',con:[]}
+                    {name:'注射',con:[]},
                 ];
                 fetchData('/User/VipUser/GetTrainPatientConfigs',{}).then(response => {
                     if (response.Data) {
