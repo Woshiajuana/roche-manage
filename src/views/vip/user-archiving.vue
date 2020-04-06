@@ -418,13 +418,13 @@
                 this.ruleForm.ArchiveRemark = rowData.ArchiveRemark || '';
 
 
-                this.ruleForm.BMI = rowData.BMI || '';
-                this.ruleForm.BloodPressure = rowData.BloodPressure || '';
-                this.ruleForm.Cholesterol = rowData.Cholesterol || '';
-                this.ruleForm.Triglyceride = rowData.Triglyceride || '';
-                this.ruleForm.HighDensity = rowData.HighDensity || '';
-                this.ruleForm.LowDensity = rowData.LowDensity || '';
-                this.ruleForm.UricAcid = rowData.UricAcid || '';
+                this.ruleForm.BMI = rowData.BMI;
+                this.ruleForm.BloodPressure = rowData.BloodPressure;
+                this.ruleForm.Cholesterol = rowData.Cholesterol;
+                this.ruleForm.Triglyceride = rowData.Triglyceride;
+                this.ruleForm.HighDensity = rowData.HighDensity;
+                this.ruleForm.LowDensity = rowData.LowDensity;
+                this.ruleForm.UricAcid = rowData.UricAcid;
                 this.ruleForm.DrinkWine = rowData.DrinkWine;
                 this.ruleForm.Smoke = rowData.Smoke;
 
