@@ -89,6 +89,60 @@
                         <el-input v-model="ruleForm.Code" placeholder="请输入核销码" :readonly="isView" />
                     </el-form-item>
                 </el-col>
+
+                <el-col :xs="24" :md="12" :lg="8" :xl="6">
+                    <el-form-item label="血压："  >
+                        <el-input v-model="ruleForm.BloodPressure" placeholder="请输入血压" :readonly="isView" />
+                    </el-form-item>
+                </el-col>
+                <el-col :xs="24" :md="12" :lg="8" :xl="6">
+                    <el-form-item label="胆固醇："  >
+                        <el-input v-model="ruleForm.Cholesterol" placeholder="请输入胆固醇" :readonly="isView" />
+                    </el-form-item>
+                </el-col>
+                <el-col :xs="24" :md="12" :lg="8" :xl="6">
+                    <el-form-item label="甘油三酯："  >
+                        <el-input v-model="ruleForm.Triglyceride" placeholder="请输入甘油三酯" :readonly="isView" />
+                    </el-form-item>
+                </el-col>
+                <el-col :xs="24" :md="12" :lg="8" :xl="6">
+                    <el-form-item label="高密度脂蛋白："  >
+                        <el-input v-model="ruleForm.HighDensity" placeholder="请输入高密度脂蛋白" :readonly="isView" />
+                    </el-form-item>
+                </el-col>
+                <el-col :xs="24" :md="12" :lg="8" :xl="6">
+                    <el-form-item label="低密度脂蛋白："  >
+                        <el-input v-model="ruleForm.LowDensity" placeholder="请输入低密度脂蛋白" :readonly="isView" />
+                    </el-form-item>
+                </el-col>
+                <el-col :xs="24" :md="12" :lg="8" :xl="6">
+                    <el-form-item label="尿酸："  >
+                        <el-input v-model="ruleForm.UricAcid" placeholder="请输入尿酸" :readonly="isView" />
+                    </el-form-item>
+                </el-col>
+                <el-col :xs="24" :md="12" :lg="8" :xl="6">
+                    <el-form-item label="BMI："  >
+                        <el-input v-model="ruleForm.BMI" placeholder="自动计算" :disabled="true" />
+                    </el-form-item>
+                </el-col>
+                <el-col :xs="24" :md="12" :lg="8" :xl="6">
+                    <el-form-item label="是否饮酒：">
+                        <el-radio-group v-model="ruleForm.DrinkWine" :disabled="isView">
+                            <el-radio :label="true">是</el-radio>
+                            <el-radio :label="false">否</el-radio>
+                        </el-radio-group>
+                    </el-form-item>
+                </el-col>
+                <el-col :xs="24" :md="12" :lg="8" :xl="6">
+                    <el-form-item label="是否吸烟：">
+                        <el-radio-group v-model="ruleForm.Smoke" :disabled="isView">
+                            <el-radio :label="true">是</el-radio>
+                            <el-radio :label="false">否</el-radio>
+                        </el-radio-group>
+                    </el-form-item>
+                </el-col>
+
+
                 <el-col :span="24"><p> 用户疾病信息</p></el-col>
                 <el-col :xs="24" :md="12" :lg="8" :xl="6">
                     <el-form-item label="糖尿病类型：" prop="SugarType">
@@ -175,6 +229,16 @@
 
                     BuyUserRelation: '', // 20191130 新增购买关系
                     ArchiveRemark: '', // 20191130 新增购买关系
+
+                    BMI: '', //20200322 BMI
+                    BloodPressure: '', //20200322 血压
+                    Cholesterol: '', //20200322 胆固醇
+                    Triglyceride: '', //20200322 甘油三酯
+                    HighDensity: '', //20200322 高密度脂蛋白
+                    LowDensity: '', //20200322 低密度脂蛋白
+                    UricAcid: '', //20200322 尿酸
+                    DrinkWine: false, //20200322 饮酒
+                    Smoke: false, //20200322 吸烟
                 },
                 timesArr:[
                     'D2',
@@ -279,6 +343,16 @@
                 this.ruleForm.BuyUserRelation = rowData.BuyUserRelation || '';
                 this.ruleForm.ArchiveRemark = rowData.ArchiveRemark || '';
 
+                this.ruleForm.BMI = rowData.BMI || '';
+                this.ruleForm.BloodPressure = rowData.BloodPressure || '';
+                this.ruleForm.Cholesterol = rowData.Cholesterol || '';
+                this.ruleForm.Triglyceride = rowData.Triglyceride || '';
+                this.ruleForm.HighDensity = rowData.HighDensity || '';
+                this.ruleForm.LowDensity = rowData.LowDensity || '';
+                this.ruleForm.UricAcid = rowData.UricAcid || '';
+                this.ruleForm.DrinkWine = rowData.DrinkWine || '';
+                this.ruleForm.Smoke = rowData.Smoke || '';
+
                 this.PlanImgUrl = rowData.PlanImgUrl;
                 this.ruleForm.Sex = rowData.Sex?rowData.Sex.toString():'';
                 this.ruleForm.Id = rowData.Id;
@@ -333,7 +407,17 @@
                             TreatmentPlan: this.ruleForm.TreatmentPlan,
                             BuyUserRelation: this.ruleForm.BuyUserRelation,
                             ArchiveRemark: this.ruleForm.ArchiveRemark,
-                            Complications: JSON.stringify(this.ruleForm.Complications)
+                            Complications: JSON.stringify(this.ruleForm.Complications),
+
+
+                            BloodPressure: this.ruleForm.BloodPressure,
+                            Cholesterol: this.ruleForm.Cholesterol,
+                            Triglyceride: this.ruleForm.Triglyceride,
+                            HighDensity: this.ruleForm.HighDensity,
+                            LowDensity: this.ruleForm.LowDensity,
+                            UricAcid: this.ruleForm.UricAcid,
+                            DrinkWine: this.ruleForm.DrinkWine,
+                            Smoke: this.ruleForm.Smoke,
                         }
                         console.log(submitData)
                         // this.ruleForm.Complications = JSON.stringify(this.ruleForm.Complications);
