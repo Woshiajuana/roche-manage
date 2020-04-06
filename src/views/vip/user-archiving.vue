@@ -425,8 +425,8 @@
                 this.ruleForm.HighDensity = rowData.HighDensity || '';
                 this.ruleForm.LowDensity = rowData.LowDensity || '';
                 this.ruleForm.UricAcid = rowData.UricAcid || '';
-                this.ruleForm.DrinkWine = rowData.DrinkWine || '';
-                this.ruleForm.Smoke = rowData.Smoke || '';
+                this.ruleForm.DrinkWine = rowData.DrinkWine;
+                this.ruleForm.Smoke = rowData.Smoke;
 
 
                 this.PlanImgUrl = rowData.PlanImgUrl;
